@@ -6,7 +6,9 @@
     "dev": "next dev -p 3009",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "export": "next export",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.0",
@@ -14,18 +16,28 @@
     "classnames": "^2.2.6",
     "mobx": "^5.15.7",
     "mobx-react-lite": "^2.2.2",
-    "next": "^13.5.5",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "next": "13.5.5",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "xmldom": "^0.5.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.10",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-decorators": "^7.10.5",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^12.1.5",
+    "@testing-library/user-event": "^13.5.0",
     "@types/classnames": "^2.2.10",
     "@types/node": "^14.6.2",
-    "@types/react": "^16.9.48",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
     "@types/xmldom": "^0.1.30",
-    "typescript": "^4.0.2"
+    "jsdom": "^25.0.1",
+    "typescript": "^4.0.2",
+    "vitest": "^2.1.8"
+  },
+  "allowScripts": {
+    "esbuild@0.21.5": true
   }
 }

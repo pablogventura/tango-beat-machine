@@ -3,11 +3,9 @@ import { AudioBackend } from './audio-backend';
 import { InstrumentPlayer } from './instrument-player';
 import { createMachine } from './machine';
 import { IInstrument, IMachine } from './machine-interfaces';
+import { IInstrumentSample, resolveInstrumentNotes } from './resolve-instrument-notes';
 
-export interface IInstrumentSample {
-  sampleName: string;
-  velocity?: number;
-}
+export type { IInstrumentSample } from './resolve-instrument-notes';
 
 export class BeatEngine {
   private nextSampleIndex = 0;
@@ -140,39 +138,9 @@ export class BeatEngine {
     }
   }
 
-  private instrumentNotes(instrument: IInstrument, sampleIndex: number): IInstrumentSample[] {
-    const result: IInstrumentSample[] = [];
-    if (instrument.enabled) {
-      const program = instrument.programs[instrument.activeProgram];
-      sampleIndex %= program.length;
-      program.notes
-        .filter((note) => note.index === sampleIndex)
-        .forEach((note) => {
-          let pitch = note.pitch;
-          if (instrument.keyedInstrument) {
-            pitch += this.machine.keyNote;
-          }
-          if (note.hand !== 'left') {
-            result.push({
-              sampleName: instrument.id + '-' + (pitch + instrument.pitchOffset),
-              velocity: note.velocity,
-            });
-            if (note.pianoTonic) {
-              result.push({
-                sampleName: instrument.id + '-' + (pitch + instrument.pitchOffset + 12),
-                velocity: note.velocity,
-              });
-            }
-          }
-          if (instrument.playBothHands && note.hand !== 'right') {
-            result.push({
-              sampleName: instrument.id + '-' + (pitch + instrument.leftHandPitchOffset),
-              velocity: note.velocity,
-            });
-          }
-        });
-    }
-    return result;
+  /** Exposed for tests and tooling. */
+  instrumentNotes(instrument: IInstrument, sampleIndex: number): IInstrumentSample[] {
+    return resolveInstrumentNotes(instrument, sampleIndex, this.machine.keyNote);
   }
 
   private stopAllInstruments(hard = false) {

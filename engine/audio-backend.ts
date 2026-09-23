@@ -1,56 +1,95 @@
 import { InstrumentPlayer } from './instrument-player';
+import {
+  SampleManifest,
+  buildSamplePathIndex,
+  resolveSampleUrl,
+  sampleUrl,
+} from './sample-path';
 
-interface BankDescriptor {
-  [sampleName: string]: number[];
-}
+const MANIFEST_URL = 'assets/audio/samples/manifest.json';
 
 export class AudioBackend {
-  public ready: boolean;
-  private buffer?: AudioBuffer;
-  private bankDescriptor?: BankDescriptor;
+  public ready = false;
+  private buffers = new Map<string, AudioBuffer>();
+  private pathIndex = new Map<string, string>();
   private zeroTime: number | null = null;
   private _context?: AudioContext;
+  private loadStarted = false;
+  private loadPromise: Promise<void> | null = null;
 
-  constructor() {
-    this.ready = false;
-    const hasWebM = typeof MediaSource !== 'undefined' && MediaSource.isTypeSupported('audio/webm;codecs="vorbis"');
-    this.loadBank(hasWebM ? 'assets/audio/main.webm' : 'assets/audio/main.mp3');
-    this.loadBankDescriptor('assets/audio/main.json');
-  }
+  constructor(private readonly manifestUrl = MANIFEST_URL) {}
 
   init(context = typeof AudioContext !== 'undefined' ? new AudioContext() : undefined) {
     this._context = context;
+    if (context && !this.loadStarted) {
+      this.loadStarted = true;
+      this.loadPromise = this.preloadSamples();
+    }
+    return this.loadPromise;
   }
 
   get context() {
     return this._context;
   }
 
-  private async loadBank(url: string) {
-    // on Safari we need to use callbacks using decodeAudioData method.
-    const req = await fetch(url);
-    const response = await req.arrayBuffer();
-    this.buffer = await new Promise((resolve, reject) => {
-      this.context?.decodeAudioData(response, resolve, reject);
-    });
-    this.ready = true;
+  get whenReady() {
+    return this.loadPromise ?? Promise.resolve();
   }
 
-  private async loadBankDescriptor(url: string) {
-    const req = await fetch(url);
-    this.bankDescriptor = await req.json();
+  private async preloadSamples() {
+    const context = this._context;
+    if (!context) {
+      return;
+    }
+
+    try {
+      const manifestRes = await fetch(this.manifestUrl);
+      if (!manifestRes.ok) {
+        throw new Error(`Failed to load sample manifest: ${manifestRes.status}`);
+      }
+      const manifest = (await manifestRes.json()) as SampleManifest;
+      this.pathIndex = buildSamplePathIndex(manifest);
+
+      await Promise.all(
+        manifest.map(async (entry) => {
+          const url = sampleUrl(entry.path);
+          const response = await fetch(url);
+          if (!response.ok) {
+            console.warn(`Missing sample file for ${entry.sampleName}: ${url}`);
+            return;
+          }
+          const arrayBuffer = await response.arrayBuffer();
+          const audioBuffer = await context.decodeAudioData(arrayBuffer.slice(0));
+          this.buffers.set(entry.sampleName, audioBuffer);
+        }),
+      );
+    } catch (error) {
+      console.error('Failed to preload audio samples', error);
+    } finally {
+      this.ready = true;
+    }
   }
 
   play(sampleName: string, player: InstrumentPlayer, when: number, velocity?: number) {
-    const bufferSource = this.context!.createBufferSource();
+    const context = this.context;
+    if (!context) {
+      return;
+    }
+
+    const buffer = this.buffers.get(sampleName);
+    if (!buffer) {
+      console.warn(`Unknown or unloaded sample: ${sampleName} (${resolveSampleUrl(sampleName, this.pathIndex)})`);
+      return;
+    }
+
+    const bufferSource = context.createBufferSource();
     bufferSource.connect(player.createNoteDestination(velocity));
-    bufferSource.buffer = this.buffer!;
-    const sampleInfo = this.bankDescriptor![sampleName];
+    bufferSource.buffer = buffer;
     if (this.zeroTime === null) {
-      this.zeroTime = this.context!.currentTime;
+      this.zeroTime = context.currentTime;
     }
     const startTime = this.zeroTime + when;
-    bufferSource.start(startTime, sampleInfo[1] / 44100.0, sampleInfo[2] / 44100.0);
+    bufferSource.start(Math.max(0, startTime));
     player.registerSample(bufferSource, startTime);
   }
 
@@ -59,9 +98,9 @@ export class AudioBackend {
   }
 
   getCurrentTime(): number {
-    if (this.zeroTime == null) {
+    if (this.zeroTime == null || !this.context) {
       return 0;
     }
-    return this.context!.currentTime - this.zeroTime;
+    return this.context.currentTime - this.zeroTime;
   }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bm:Machine xmlns="http://www.salsabeatmachine.org/xns/bm"
+			xmlns:bm="http://www.salsabeatmachine.org/xns/bm">
+	<bm:instrumentList>
+		<Clave xmlns="http://www.salsabeatmachine.org/xns/instruments" title="Clave">
+			<enabled>true</enabled>
+			<activeProgram>0</activeProgram>
+			<respectsClave>true</respectsClave>
+			<programs>
+				<bm:Program title="Son Clave" length="4">
+					<bm:Note index="0" pitch="0" />
+					<bm:Note index="2" pitch="0" />
+				</bm:Program>
+			</programs>
+		</Clave>
+		<Piano xmlns="http://www.salsabeatmachine.org/xns/instruments" title="Piano">
+			<enabled>true</enabled>
+			<activeProgram>0</activeProgram>
+			<pitchOffset>60</pitchOffset>
+			<keyedInstrument>true</keyedInstrument>
+			<programs>
+				<bm:Program title="Simple" length="4">
+					<bm:Note index="0" pitch="0" />
+				</bm:Program>
+			</programs>
+		</Piano>
+	</bm:instrumentList>
+	<bm:flavor>Salsa</bm:flavor>
+	<bm:bpm>180</bm:bpm>
+	<bm:keyNote>0</bm:keyNote>
+</bm:Machine>

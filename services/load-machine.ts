@@ -3,8 +3,8 @@ import { resolve } from 'path';
 import { DOMParser } from 'xmldom';
 import { MachineXMLLoader } from '../engine/machine-xml-loader.service';
 
-export async function loadMachine(fileName: string) {
-  const fullPath = resolve(process.cwd(), 'public/assets/machines', fileName);
+export async function loadMachine(fileName: string, machinesDirectory = resolve(process.cwd(), 'public/assets/machines')) {
+  const fullPath = resolve(machinesDirectory, fileName);
   const machineXml = await fs.readFile(fullPath, 'utf-8');
   const xml = new DOMParser().parseFromString(machineXml, 'text/xml');
   const loader = new MachineXMLLoader();
