@@ -30,8 +30,8 @@ describe('useMachine', () => {
     vi.stubGlobal('fetch', fetchMock);
 
     render(<Probe />);
-    await waitFor(() => expect(screen.getByText('Salsa')).toBeInTheDocument());
-    expect(screen.getByText('clave,piano')).toBeInTheDocument();
+    await waitFor(() => expect(screen.getByText('Tango')).toBeInTheDocument());
+    expect(screen.getByText('bandoneon,piano')).toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalled();
   });
 });

@@ -1,10 +1,10 @@
-import { FormControl, IconButton, Select, Slider } from '@material-ui/core';
+import { IconButton, Slider } from '@material-ui/core';
 import classnames from 'classnames';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { IInstrument } from '../engine/machine-interfaces';
+import { assetUrl } from '../utils/base-path';
 import styles from './instrument-tile.module.css';
-import SettingsIcon from '@material-ui/icons/Settings';
 import VolumeIcon from '@material-ui/icons/VolumeUp';
 
 interface IInstrumentTileProps {
@@ -12,10 +12,9 @@ interface IInstrumentTileProps {
 }
 
 export const InstrumentTile = observer(({ instrument }: IInstrumentTileProps) => {
-  const [showSettings, setShowSettings] = useState(false);
   const [showVolume, setShowVolume] = useState(false);
   const [previousVolume, setPreviousVolume] = useState(instrument.volume);
-  const showTitle = !showSettings && !showVolume;
+  const showTitle = !showVolume;
 
   const toggle = () => {
     if (instrument.enabled) {
@@ -33,23 +32,14 @@ export const InstrumentTile = observer(({ instrument }: IInstrumentTileProps) =>
         <div
           className={classnames(styles.thumbnail, !instrument.enabled && styles.disabled)}
           onClick={toggle}
-          style={{ backgroundImage: `url(assets/instruments/${instrument.id}.svg)` }}
+          style={{ backgroundImage: `url(${assetUrl(`assets/instruments/${instrument.id}.svg`)})` }}
         />
         <div className={styles.tools}>
           <IconButton
             className={styles.iconButton}
-            onClick={() => {
-              setShowSettings(!showSettings);
-              setShowVolume(false);
-            }}
-          >
-            <SettingsIcon className={classnames(showSettings && styles.active)} />
-          </IconButton>
-          <IconButton
-            className={styles.iconButton}
+            aria-label="Volume"
             onClick={() => {
               setShowVolume(!showVolume);
-              setShowSettings(false);
             }}
           >
             <VolumeIcon className={classnames(showVolume && styles.active)} />
@@ -68,21 +58,6 @@ export const InstrumentTile = observer(({ instrument }: IInstrumentTileProps) =>
             instrument.volume = newValue as number;
           }}
         />
-      )}
-      {showSettings && (
-        <FormControl>
-          <Select
-            native
-            value={instrument.activeProgram + 1}
-            onChange={(e) => (instrument.activeProgram = parseInt(e.target.value as string, 10) - 1)}
-          >
-            {instrument.programs.map((program, index) => (
-              <option key={program.title} value={index + 1}>
-                {program.title}
-              </option>
-            ))}
-          </Select>
-        </FormControl>
       )}
       {/* filter is used by CSS to draw disabled instruments */}
       <svg height="0" width="0">

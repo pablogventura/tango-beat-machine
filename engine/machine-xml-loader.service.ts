@@ -19,7 +19,9 @@ export class MachineXMLLoader {
     } = {
       bpm: (node) => (machine.bpm = parseInt(node.textContent!, 10)),
       keyNote: (node) => (machine.keyNote = parseInt(node.textContent!, 10)),
-      flavor: (node) => (machine.flavor = node.textContent as any),
+      flavor: () => {
+        machine.flavor = 'Tango';
+      },
       instrumentList: (node) => (machine.instruments = this.processInstrumentList(node)),
     };
 

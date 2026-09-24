@@ -1,7 +1,7 @@
 {
-  "name": "Salsa Beat Machine",
-  "short_name": "Salsa Rhythm",
-  "theme_color": "#d20000",
+  "name": "Tango Beat Machine",
+  "short_name": "Tango Beat",
+  "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",

@@ -1,14 +1,4 @@
-import {
-  Button,
-  ButtonGroup,
-  FormControl,
-  Grid,
-  IconButton,
-  InputLabel,
-  Select,
-  Slider,
-  Typography,
-} from '@material-ui/core';
+import { FormControl, Grid, IconButton, InputLabel, Select, Slider, Typography } from '@material-ui/core';
 import PauseIcon from '@material-ui/icons/Pause';
 import PlayIcon from '@material-ui/icons/PlayArrow';
 import classnames from 'classnames';
@@ -18,24 +8,24 @@ import { useEffect, useState } from 'react';
 import { IMachine } from '../engine/machine-interfaces';
 import { useBeatEngine } from '../hooks/use-beat-engine';
 import { useWindowListener } from '../hooks/use-window-listener';
+import {
+  getMachineActiveProgram,
+  getMachineProgramTitles,
+  setMachineProgram,
+} from '../utils/machine-program';
 import { BeatIndicator } from './beat-indicator';
 import styles from './beat-machine-ui.module.css';
 import { InstrumentTile } from './instrument-tile';
 
-export interface IDefaultMachines {
-  salsa: IMachine;
-  merengue: IMachine;
-  tango: IMachine;
-}
+const BEAT_COUNT = 8;
 
 export interface IBeatMachineUIProps {
-  machines: IDefaultMachines;
+  machine: IMachine;
 }
 
-export const BeatMachineUI = observer(({ machines }: IBeatMachineUIProps) => {
-  const { salsa, merengue, tango } = machines;
+export const BeatMachineUI = observer(({ machine: initialMachine }: IBeatMachineUIProps) => {
   const engine = useBeatEngine();
-  const [machine, setMachine] = useState(observable(salsa));
+  const [machine] = useState(() => observable(initialMachine));
 
   useEffect(() => {
     if (engine && machine) {
@@ -43,9 +33,9 @@ export const BeatMachineUI = observer(({ machines }: IBeatMachineUIProps) => {
     }
   }, [engine, machine]);
 
-  const beatCount = machine.flavor === 'Merengue' ? 4 : 8;
-  const beatDivider = machine.flavor === 'Merengue' ? 2 : 1;
-  const beatIndex = engine?.playing ? Math.round(0.5 + ((engine.beat / beatDivider) % beatCount)) : 0;
+  const beatIndex = engine?.playing ? Math.round(0.5 + (engine.beat % BEAT_COUNT)) : 0;
+  const programTitles = getMachineProgramTitles(machine);
+  const activeProgram = getMachineActiveProgram(machine);
 
   useWindowListener(
     'keydown',
@@ -66,20 +56,23 @@ export const BeatMachineUI = observer(({ machines }: IBeatMachineUIProps) => {
 
         case 'K':
           machine.keyNote = (machine.keyNote + 5) % 12;
+          break;
       }
       if (event.key >= '0' && event.key <= '9') {
         const index = (parseInt(event.key, 10) + 10 - 1) % 10;
-        const instrument = machine.instruments[index];
-        if (instrument) {
-          if (event.altKey) {
-            instrument.activeProgram = (instrument.activeProgram + 1) % instrument.programs.length;
-          } else {
+        if (event.altKey) {
+          if (programTitles.length > 0) {
+            setMachineProgram(machine, index % programTitles.length);
+          }
+        } else {
+          const instrument = machine.instruments[index];
+          if (instrument) {
             instrument.enabled = !instrument.enabled;
           }
         }
       }
     },
-    [machine],
+    [machine, programTitles.length],
   );
 
   const playClick = () => {
@@ -116,27 +109,22 @@ export const BeatMachineUI = observer(({ machines }: IBeatMachineUIProps) => {
           </Grid>
           <Grid item xs={1} />
           <Grid item>
-            {engine && salsa && merengue && tango && (
-              <ButtonGroup variant="text" color="primary" aria-label="Music style">
-                <Button
-                  onClick={() => setMachine(observable(salsa))}
-                  variant={machine.flavor === 'Salsa' ? 'contained' : undefined}
+            {programTitles.length > 0 && (
+              <FormControl>
+                <InputLabel htmlFor="machine-program">Program</InputLabel>
+                <Select
+                  native
+                  value={activeProgram}
+                  onChange={(e) => setMachineProgram(machine, parseInt(e.target.value as string, 10))}
+                  inputProps={{ id: 'machine-program' }}
                 >
-                  Salsa
-                </Button>
-                <Button
-                  onClick={() => setMachine(observable(merengue))}
-                  variant={machine.flavor === 'Merengue' ? 'contained' : undefined}
-                >
-                  Merengue
-                </Button>
-                <Button
-                  onClick={() => setMachine(observable(tango))}
-                  variant={machine.flavor === 'Tango' ? 'contained' : undefined}
-                >
-                  Tango
-                </Button>
-              </ButtonGroup>
+                  {programTitles.map((title, index) => (
+                    <option key={title} value={index}>
+                      {title}
+                    </option>
+                  ))}
+                </Select>
+              </FormControl>
             )}
           </Grid>
           <Grid item xs={1} />
@@ -169,7 +157,7 @@ export const BeatMachineUI = observer(({ machines }: IBeatMachineUIProps) => {
         </Grid>
 
         <div className={styles.controlsIndicator}>
-          <BeatIndicator currentBeat={beatIndex} max={beatCount} />
+          <BeatIndicator currentBeat={beatIndex} max={BEAT_COUNT} />
         </div>
       </div>
 

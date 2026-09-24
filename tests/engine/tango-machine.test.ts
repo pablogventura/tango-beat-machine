@@ -33,10 +33,11 @@ describe('tango machine', () => {
     }
   });
 
-  it('parses soundSource defaults for salsa instruments', () => {
+  it('parses soundSource from fixture instruments', () => {
     const xmlText = readFileSync(resolve(process.cwd(), 'tests/fixtures/machines/minimal.xml'), 'utf-8');
     const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
     const machine = new MachineXMLLoader().loadMachine(xml);
-    expect(machine.instruments[0].soundSource).toBe('sample');
+    expect(machine.instruments[0].soundSource).toBe('soundfont');
+    expect(machine.instruments[1].soundSource).toBe('soundfont');
   });
 });

@@ -63,24 +63,7 @@
                 <Program title="Cumparsita Dramática" length="32"><Note index="2" pitch="12" velocity="0.36" /><Note index="6" pitch="15" velocity="0.34" /><Note index="10" pitch="10" velocity="0.36" /><Note index="14" pitch="8" velocity="0.34" /><Note index="18" pitch="12" velocity="0.38" /><Note index="22" pitch="15" velocity="0.34" /><Note index="26" pitch="10" velocity="0.36" /><Note index="30" pitch="8" velocity="0.34" /></Program><Program title="El Choclo Criollo" length="32"><Note index="3" pitch="12" velocity="0.34" /><Note index="7" pitch="8" velocity="0.32" /><Note index="11" pitch="15" velocity="0.34" /><Note index="15" pitch="12" velocity="0.34" /><Note index="19" pitch="10" velocity="0.34" /><Note index="23" pitch="13" velocity="0.34" /><Note index="27" pitch="12" velocity="0.36" /><Note index="31" pitch="8" velocity="0.32" /></Program><Program title="Derecho Viejo Pista" length="32"><Note index="3" pitch="12" velocity="0.3" /><Note index="7" pitch="8" velocity="0.3" /><Note index="11" pitch="10" velocity="0.32" /><Note index="15" pitch="8" velocity="0.3" /><Note index="19" pitch="12" velocity="0.3" /><Note index="23" pitch="15" velocity="0.3" /><Note index="27" pitch="10" velocity="0.32" /><Note index="31" pitch="8" velocity="0.3" /></Program><Program title="La Puñalada Veloz" length="32"><Note index="2" pitch="12" velocity="0.34" /><Note index="6" pitch="15" velocity="0.36" /><Note index="10" pitch="13" velocity="0.34" /><Note index="14" pitch="12" velocity="0.36" /><Note index="18" pitch="12" velocity="0.34" /><Note index="22" pitch="15" velocity="0.36" /><Note index="26" pitch="13" velocity="0.34" /><Note index="30" pitch="12" velocity="0.36" /></Program><Program title="Quejas Cantabile" length="32"><Note index="2" pitch="12" velocity="0.46" /><Note index="6" pitch="15" velocity="0.44" /><Note index="10" pitch="13" velocity="0.42" /><Note index="14" pitch="12" velocity="0.46" /><Note index="18" pitch="15" velocity="0.44" /><Note index="22" pitch="13" velocity="0.42" /><Note index="26" pitch="12" velocity="0.44" /><Note index="30" pitch="8" velocity="0.42" /></Program><Program title="El Flete Picado" length="32"><Note index="5" pitch="15" velocity="0.34" /><Note index="9" pitch="12" velocity="0.34" /><Note index="13" pitch="8" velocity="0.36" /><Note index="21" pitch="15" velocity="0.34" /><Note index="25" pitch="12" velocity="0.34" /><Note index="29" pitch="8" velocity="0.36" /></Program><Program title="9 de Julio Marcato" length="32"><Note index="2" pitch="12" velocity="0.32" /><Note index="10" pitch="10" velocity="0.32" /><Note index="18" pitch="15" velocity="0.32" /><Note index="26" pitch="12" velocity="0.32" /></Program><Program title="Gran Muñeca Elegante" length="32"><Note index="2" pitch="12" velocity="0.4" /><Note index="6" pitch="8" velocity="0.38" /><Note index="10" pitch="15" velocity="0.4" /><Note index="14" pitch="12" velocity="0.42" /><Note index="18" pitch="15" velocity="0.4" /><Note index="22" pitch="13" velocity="0.38" /><Note index="26" pitch="12" velocity="0.4" /><Note index="30" pitch="8" velocity="0.42" /></Program></ns1:programs>
         </ns1:Violin>
 
-        <ns1:Instructor title="Instructor">
-            <ns1:enabled>false</ns1:enabled>
-            <ns1:activeProgram>0</ns1:activeProgram>
-            <ns1:soundSource>sample</ns1:soundSource>
-            <ns1:programs>
-                <Program title="1" length="16">
-                    <Note index="0" pitch="0" />
-                </Program>
-                <Program title="1,2,3,4" length="16">
-                    <Note index="0" pitch="0" />
-                    <Note index="4" pitch="1" />
-                    <Note index="8" pitch="2" />
-                    <Note index="12" pitch="3" />
-                </Program>
-            </ns1:programs>
-        </ns1:Instructor>
-
-    </instrumentList>
+</instrumentList>
 
     <flavor>Tango</flavor>
     <bpm>120</bpm>

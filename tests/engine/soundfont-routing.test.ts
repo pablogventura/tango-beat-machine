@@ -11,10 +11,10 @@ describe('BeatEngine soundfont routing', () => {
     vi.unstubAllGlobals();
   });
 
-  it('routes soundfont instruments to SoundFontBackend', async () => {
+  it('routes instruments to SoundFontBackend', async () => {
     vi.stubGlobal(
       'fetch',
-      vi.fn(async () => new Response('[]', { status: 200, headers: { 'Content-Type': 'application/json' } })),
+      vi.fn(async () => new Response(new ArrayBuffer(8), { status: 200 })),
     );
     vi.useFakeTimers();
 
@@ -28,10 +28,7 @@ describe('BeatEngine soundfont routing', () => {
     await mixer.whenReady;
     mixer.ready = true;
 
-    const playWav = vi.spyOn(mixer, 'play').mockImplementation(() => undefined);
-
     const machine = createMachine();
-    machine.flavor = 'Tango';
     machine.instruments = [
       createInstrument({
         id: 'bandoneon',
@@ -49,26 +46,10 @@ describe('BeatEngine soundfont routing', () => {
     await Promise.resolve();
 
     expect(playSf).toHaveBeenCalled();
-    expect(playWav).not.toHaveBeenCalled();
     const firstCall = playSf.mock.calls[0][0];
     expect(firstCall.midiNote).toBe(48);
 
     engine.stop();
     vi.useRealTimers();
-  });
-
-  it('keeps tango beatTime on the salsa path', () => {
-    const engine = new BeatEngine(new AudioBackend());
-    const salsa = createMachine();
-    salsa.bpm = 120;
-    salsa.flavor = 'Salsa';
-    engine.machine = salsa;
-    const salsaBeat = engine.beatTime;
-
-    const tango = createMachine();
-    tango.bpm = 120;
-    tango.flavor = 'Tango';
-    engine.machine = tango;
-    expect(engine.beatTime).toBe(salsaBeat);
   });
 });

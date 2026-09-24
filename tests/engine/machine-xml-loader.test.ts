@@ -13,15 +13,16 @@ describe('MachineXMLLoader', () => {
     const xml = new DOMParser().parseFromString(xmlText, 'text/xml');
     const machine = new MachineXMLLoader().loadMachine(xml);
 
-    expect(machine.flavor).toBe('Salsa');
-    expect(machine.bpm).toBe(180);
+    expect(machine.flavor).toBe('Tango');
+    expect(machine.bpm).toBe(120);
     expect(machine.keyNote).toBe(0);
     expect(machine.instruments).toHaveLength(2);
     expect(machine.instruments[0]).toMatchObject({
-      id: 'clave',
-      title: 'Clave',
+      id: 'bandoneon',
+      title: 'Bandoneon',
       enabled: true,
-      respectsClave: true,
+      soundSource: 'soundfont',
+      soundfontId: 'bandoneon',
     });
     expect(machine.instruments[0].programs[0].notes).toEqual([
       { index: 0, pitch: 0, velocity: undefined },
@@ -38,13 +39,18 @@ describe('MachineXMLLoader', () => {
 describe('loadMachine', () => {
   it('reads a machine XML from a custom directory', async () => {
     const machine = await loadMachine('minimal.xml', fixturesDir);
-    expect(machine.flavor).toBe('Salsa');
-    expect(machine.instruments.map((instrument: { id: string }) => instrument.id)).toEqual(['clave', 'piano']);
+    expect(machine.flavor).toBe('Tango');
+    expect(machine.instruments.map((instrument: { id: string }) => instrument.id)).toEqual(['bandoneon', 'piano']);
   });
 
-  it('loads the salsa machine from public assets', async () => {
-    const machine = await loadMachine('salsa.xml');
-    expect(machine.flavor).toBe('Salsa');
-    expect(machine.instruments.length).toBeGreaterThan(3);
+  it('loads the tango machine from public assets', async () => {
+    const machine = await loadMachine('tango.xml');
+    expect(machine.flavor).toBe('Tango');
+    expect(machine.instruments.map((instrument: { id: string }) => instrument.id)).toEqual([
+      'bandoneon',
+      'piano',
+      'bass',
+      'violin',
+    ]);
   });
 });

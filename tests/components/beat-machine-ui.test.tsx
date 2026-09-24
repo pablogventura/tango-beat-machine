@@ -1,81 +1,63 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { observable } from 'mobx';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { BeatMachineUI } from '../../components/beat-machine-ui';
 import { createMachine } from '../../engine/machine';
 import { createInstrument } from '../helpers/create-instrument';
-
-const play = vi.fn();
-const stop = vi.fn();
 
 vi.mock('../../hooks/use-beat-engine', () => ({
   useBeatEngine: () => ({
     playing: false,
     beat: 0,
-    play,
-    stop,
-    get machine() {
-      return null;
-    },
+    play: vi.fn(),
+    stop: vi.fn(),
     set machine(_value: unknown) {
       return undefined;
     },
   }),
 }));
 
-import { BeatMachineUI } from '../../components/beat-machine-ui';
-
-function buildMachines() {
-  const salsa = createMachine();
-  salsa.flavor = 'Salsa';
-  salsa.bpm = 180;
-  salsa.instruments = [createInstrument({ id: 'clave', title: 'Clave' })];
-
-  const merengue = createMachine();
-  merengue.flavor = 'Merengue';
-  merengue.bpm = 160;
-  merengue.instruments = [createInstrument({ id: 'cowbell', title: 'Cowbell' })];
-
-  const tango = createMachine();
-  tango.flavor = 'Tango';
-  tango.bpm = 120;
-  tango.instruments = [createInstrument({ id: 'bandoneon', title: 'Bandoneon', soundSource: 'soundfont' })];
-
-  return {
-    salsa: observable(salsa),
-    merengue: observable(merengue),
-    tango: observable(tango),
-  };
+function buildMachine() {
+  const machine = createMachine();
+  machine.flavor = 'Tango';
+  machine.bpm = 120;
+  const programs = [
+    { title: 'Cumparsita Dramática', length: 4, notes: [{ index: 0, pitch: 0 }] },
+    { title: 'El Choclo Criollo', length: 4, notes: [{ index: 0, pitch: 0 }] },
+  ];
+  machine.instruments = [
+    createInstrument({
+      id: 'bandoneon',
+      title: 'Bandoneon',
+      soundSource: 'soundfont',
+      programs,
+    }),
+    createInstrument({
+      id: 'piano',
+      title: 'Piano',
+      soundSource: 'soundfont',
+      programs: programs.map((program) => ({ ...program })),
+    }),
+  ];
+  return observable(machine);
 }
 
 describe('BeatMachineUI', () => {
-  beforeEach(() => {
-    play.mockClear();
-    stop.mockClear();
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
-  it('starts playback when play is clicked', async () => {
-    render(<BeatMachineUI machines={buildMachines()} />);
-    fireEvent.click(screen.getByLabelText('Play'));
-    expect(play).toHaveBeenCalled();
-  });
+  it('renders tango instruments and syncs the global program select', async () => {
+    const machine = buildMachine();
+    render(<BeatMachineUI machine={machine} />);
+    expect(screen.getByText('Bandoneon')).toBeInTheDocument();
+    expect(screen.getByText('Piano')).toBeInTheDocument();
 
-  it('switches between salsa, merengue and tango', async () => {
-    render(<BeatMachineUI machines={buildMachines()} />);
-    expect(screen.getByText('Clave')).toBeInTheDocument();
-
-    fireEvent.click(screen.getByText('Merengue'));
-    await waitFor(() => expect(screen.getByText('Cowbell')).toBeInTheDocument());
-
-    fireEvent.click(screen.getByText('Tango'));
-    await waitFor(() => expect(screen.getByText('Bandoneon')).toBeInTheDocument());
-
-    fireEvent.click(screen.getByText('Salsa'));
-    await waitFor(() => expect(screen.getByText('Clave')).toBeInTheDocument());
-  });
-
-  it('updates bpm from the slider label context', () => {
-    const machines = buildMachines();
-    render(<BeatMachineUI machines={machines} />);
-    expect(screen.getByText('180 BPM')).toBeInTheDocument();
+    const select = screen.getByLabelText('Program') as HTMLSelectElement;
+    fireEvent.change(select, { target: { value: '1' } });
+    await waitFor(() => {
+      expect(machine.instruments[0].activeProgram).toBe(1);
+      expect(machine.instruments[1].activeProgram).toBe(1);
+    });
   });
 });

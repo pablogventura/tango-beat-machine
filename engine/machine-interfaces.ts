@@ -33,7 +33,7 @@ export interface IInstrument {
   soundfontId: string;
 }
 
-export type MachineFlavor = 'Salsa' | 'Merengue' | 'Tango';
+export type MachineFlavor = 'Tango';
 
 export interface IMachine {
   bpm: number;

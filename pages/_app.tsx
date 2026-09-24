@@ -1,8 +1,8 @@
-import { AppPropsType } from 'next/dist/next-server/lib/utils';
+import type { AppProps } from 'next/app';
 import { GoogleAnalyticsScript } from '../components/google-analytics';
 import '../styles/globals.css';
 
-function MyApp({ Component, pageProps }: AppPropsType) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Component {...pageProps} />

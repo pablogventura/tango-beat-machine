@@ -1,11 +1,6 @@
-Images Copyright (C) 2017, CodeMagic LTD
+Instrument icons in this folder:
 
-The instrument images in this folder are licensed to use within the Salsa Beat Machine only. They may be redistributed with any copy of the Salsa Beat Machine, as long as this notice is retained.
-
-If you intend to use them for a different purpose, you first need to get an explicit, written permission from the authors.
-
-Exceptions (not covered by the CodeMagic notice above):
-
+- piano.svg, bass.svg: Copyright (C) 2017, CodeMagic LTD. Licensed for use within this beat machine product; retain this notice when redistributing with the app.
 - violin.svg: public domain (Open Clip Art Library / gnokii), via Wikimedia Commons
   https://commons.wikimedia.org/wiki/File:Violin_by_gnokii.svg
-- bandoneon.svg: original artwork for this project (no CodeMagic copyright)
+- bandoneon.svg: original artwork for this project

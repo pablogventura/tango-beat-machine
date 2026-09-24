@@ -1,26 +1,35 @@
-# The Salsa Beat Machine
+# Tango Beat Machine
 
-Combine and arrange musical instruments to create different Salsa, Merengue, and Tango grooves. Great for musicians and dancers who want to practice timing and train their ears.
+Interactive tango rhythm machine with bandoneon, piano, bass, and violin (SoundFonts in the browser).
 
-Check out the [online version](https://www.salsabeatmachine.org/)
+Live site: [https://pablogventura.github.io/tango-beat-machine/](https://pablogventura.github.io/tango-beat-machine/)
 
-Get the [Android App](https://play.google.com/store/apps/details?id=com.salsarhythm&hl=en)
-
-Built with [Next.js](https://nextjs.org/).
+Built with [Next.js](https://nextjs.org/) (static export).
 
 ## Local development
 
-- WAV samples (Salsa / Merengue): `public/assets/audio/samples/`
-- SoundFonts (Tango): `public/assets/audio/soundfonts/` (see [CREDITS.md](CREDITS.md))
-- FluidSynth runtime helper: `public/vendor/libfluidsynth-2.4.6-with-libsndfile.js`
+- SoundFonts: `public/assets/audio/soundfonts/` (see [CREDITS.md](CREDITS.md))
+- FluidSynth helper: `public/vendor/libfluidsynth-2.4.6-with-libsndfile.js`
+- Machine: `public/assets/machines/tango.xml`
 
 ```shell
 npm install
 npm run dev
 ```
 
-Then go to http://localhost:3009/ and start hacking!
+Open [http://localhost:3009/](http://localhost:3009/).
 
 ```shell
 npm test
+npm run build
 ```
+
+For a GitHub Pages-shaped build locally:
+
+```shell
+GITHUB_PAGES=true npm run build
+```
+
+## Deploy
+
+Push to `master` runs [`.github/workflows/pages.yml`](.github/workflows/pages.yml) and publishes `out/` to GitHub Pages. Enable **Settings -> Pages -> Source: GitHub Actions** on the repo.

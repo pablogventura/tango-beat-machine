@@ -1,11 +1,12 @@
 import { IInstrument } from './machine-interfaces';
+import { assetUrl } from '../utils/base-path';
 
 /** SF3 needs the libsndfile FluidSynth build. */
-const LIBFLUIDSYNTH_URL = '/vendor/libfluidsynth-2.4.6-with-libsndfile.js';
+const LIBFLUIDSYNTH_URL = assetUrl('vendor/libfluidsynth-2.4.6-with-libsndfile.js');
 
 const SOUNDFONT_URLS: Record<string, string> = {
-  bandoneon: '/assets/audio/soundfonts/bandoneon_v2.sf2',
-  gm: '/assets/audio/soundfonts/MuseScore_General.sf3',
+  bandoneon: assetUrl('assets/audio/soundfonts/bandoneon_v2.sf2'),
+  gm: assetUrl('assets/audio/soundfonts/MuseScore_General.sf3'),
 };
 
 /** MIDI CC numbers used for per-channel mix. */

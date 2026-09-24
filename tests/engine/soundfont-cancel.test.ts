@@ -27,6 +27,7 @@ describe('SoundFontBackend cancelInstrument', () => {
       midiAllNotesOff: allNotesOff,
       midiAllSoundsOff: allSoundsOff,
       midiProgramSelect: programSelect,
+      midiControl: vi.fn(),
     };
     (backend as any).sfontIds = new Map([['bandoneon', 1], ['gm', 2]]);
     (backend as any).getTransportTime = () => 0;

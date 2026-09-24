@@ -2,30 +2,36 @@
 <bm:Machine xmlns="http://www.salsabeatmachine.org/xns/bm"
 			xmlns:bm="http://www.salsabeatmachine.org/xns/bm">
 	<bm:instrumentList>
-		<Clave xmlns="http://www.salsabeatmachine.org/xns/instruments" title="Clave">
+		<Bandoneon xmlns="http://www.salsabeatmachine.org/xns/instruments" title="Bandoneon">
 			<enabled>true</enabled>
 			<activeProgram>0</activeProgram>
-			<respectsClave>true</respectsClave>
+			<keyedInstrument>true</keyedInstrument>
+			<pitchOffset>48</pitchOffset>
+			<soundSource>soundfont</soundSource>
+			<soundfontId>bandoneon</soundfontId>
+			<midiProgram>0</midiProgram>
 			<programs>
-				<bm:Program title="Son Clave" length="4">
+				<bm:Program title="Cumparsita" length="4">
 					<bm:Note index="0" pitch="0" />
 					<bm:Note index="2" pitch="0" />
 				</bm:Program>
 			</programs>
-		</Clave>
+		</Bandoneon>
 		<Piano xmlns="http://www.salsabeatmachine.org/xns/instruments" title="Piano">
 			<enabled>true</enabled>
 			<activeProgram>0</activeProgram>
 			<pitchOffset>60</pitchOffset>
 			<keyedInstrument>true</keyedInstrument>
+			<soundSource>soundfont</soundSource>
+			<soundfontId>gm</soundfontId>
 			<programs>
-				<bm:Program title="Simple" length="4">
+				<bm:Program title="Cumparsita" length="4">
 					<bm:Note index="0" pitch="0" />
 				</bm:Program>
 			</programs>
 		</Piano>
 	</bm:instrumentList>
-	<bm:flavor>Salsa</bm:flavor>
-	<bm:bpm>180</bm:bpm>
+	<bm:flavor>Tango</bm:flavor>
+	<bm:bpm>120</bm:bpm>
 	<bm:keyNote>0</bm:keyNote>
 </bm:Machine>

@@ -53,9 +53,7 @@ export class BeatEngine {
         return;
       }
 
-      if (this.usesSoundFonts(this.machine)) {
-        void this.soundfonts.ensureLoaded();
-      }
+      void this.soundfonts.ensureLoaded();
 
       if (this.playing) {
         this.stop();
@@ -115,19 +113,16 @@ export class BeatEngine {
     }
     this.mixer.ensureTimeline();
 
-    if (this.usesSoundFonts(this.machine)) {
-      try {
-        await this.soundfonts.ensureLoaded();
-      } catch (error) {
-        console.error('Failed to load soundfonts', error);
-      }
+    try {
+      await this.soundfonts.ensureLoaded();
+    } catch (error) {
+      console.error('Failed to load soundfonts', error);
     }
 
     if (!this._playing) {
       return;
     }
 
-    // Avoid stacking multiple schedulers if play() is called again.
     if (this.interval) {
       clearTimeout(this.interval);
       this.interval = null;
@@ -139,10 +134,6 @@ export class BeatEngine {
 
     this.scheduleBuffers();
     this.beatTick();
-  }
-
-  private usesSoundFonts(machine: IMachine) {
-    return machine.flavor === 'Tango' || machine.instruments.some((instrument) => instrument.soundSource === 'soundfont');
   }
 
   private getInstrumentPlayer(context: AudioContext, instrument: IInstrument) {
@@ -159,23 +150,19 @@ export class BeatEngine {
     }
   }
 
-  private playNote(instrument: IInstrument, note: IInstrumentSample, when: number, player: InstrumentPlayer) {
-    if (instrument.soundSource === 'soundfont') {
-      const midiNote = midiNoteFromSampleName(note.sampleName);
-      if (midiNote == null) {
-        console.warn(`Cannot parse MIDI note from ${note.sampleName}`);
-        return;
-      }
-      this.soundfonts.play({
-        instrument,
-        midiNote,
-        when,
-        velocity: note.velocity,
-        durationSec: soundfontNoteDurationSec(instrument.id, this.beatTime),
-      });
+  private playNote(instrument: IInstrument, note: IInstrumentSample, when: number) {
+    const midiNote = midiNoteFromSampleName(note.sampleName);
+    if (midiNote == null) {
+      console.warn(`Cannot parse MIDI note from ${note.sampleName}`);
       return;
     }
-    this.mixer.play(note.sampleName, player, when, note.velocity);
+    this.soundfonts.play({
+      instrument,
+      midiNote,
+      when,
+      velocity: note.velocity,
+      durationSec: soundfontNoteDurationSec(instrument.id, this.beatTime),
+    });
   }
 
   private scheduleBuffers() {
@@ -187,9 +174,9 @@ export class BeatEngine {
       while (this.nextSampleIndex - currentBeat * 2 < 64) {
         const sampleIndex = this.nextSampleIndex;
         this.machine.instruments.forEach((instrument) => {
-          const instrumentPlayer = this.getInstrumentPlayer(context, instrument);
+          this.getInstrumentPlayer(context, instrument);
           this.instrumentNotes(instrument, sampleIndex).forEach((note) => {
-            this.playNote(instrument, note, sampleIndex * sampleTime - this.audioTimeDelta, instrumentPlayer);
+            this.playNote(instrument, note, sampleIndex * sampleTime - this.audioTimeDelta);
           });
         });
         this.nextSampleIndex++;
@@ -202,9 +189,7 @@ export class BeatEngine {
 
   rescheduleInstrument(instrument: IInstrument, player: InstrumentPlayer) {
     player.reset();
-    if (instrument.soundSource === 'soundfont') {
-      this.soundfonts.cancelInstrument(instrument.id);
-    }
+    this.soundfonts.cancelInstrument(instrument.id);
 
     const sampleTime = this.beatTime / 2;
     const transportNow = this.mixer.getCurrentTime();
@@ -216,7 +201,7 @@ export class BeatEngine {
         continue;
       }
       this.instrumentNotes(instrument, sampleIndex).forEach((note) => {
-        this.playNote(instrument, note, when, player);
+        this.playNote(instrument, note, when);
       });
     }
   }
@@ -255,8 +240,7 @@ export class BeatEngine {
   }
 
   get beatTime() {
-    const result = 60 / this.machine.bpm;
-    return this.machine.flavor === 'Merengue' ? result / 2 : result;
+    return 60 / this.machine.bpm;
   }
 
   public getBeatIndex() {

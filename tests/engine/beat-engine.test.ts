@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { AudioBackend } from '../../engine/audio-backend';
 import { BeatEngine } from '../../engine/beat-engine';
 import { resolveInstrumentNotes } from '../../engine/resolve-instrument-notes';
+import { SoundFontBackend } from '../../engine/soundfont-backend';
 import { createInstrument } from '../helpers/create-instrument';
 import { createMachine } from '../../engine/machine';
 
@@ -11,6 +12,7 @@ describe('resolveInstrumentNotes', () => {
       id: 'piano',
       keyedInstrument: true,
       pitchOffset: 60,
+      soundSource: 'soundfont',
       programs: [{ title: 'Simple', length: 4, notes: [{ index: 0, pitch: 0 }] }],
     });
 
@@ -28,6 +30,7 @@ describe('resolveInstrumentNotes', () => {
       id: 'piano',
       keyedInstrument: true,
       pitchOffset: 60,
+      soundSource: 'soundfont',
       programs: [{ title: 'Tonic', length: 4, notes: [{ index: 0, pitch: 0, pianoTonic: true }] }],
     });
     expect(resolveInstrumentNotes(piano, 0, 0)).toEqual([
@@ -50,19 +53,12 @@ describe('BeatEngine', () => {
     );
   });
 
-  it('uses merengue beat time half of salsa at same bpm', () => {
+  it('uses quarter-note beatTime from bpm', () => {
     const engine = new BeatEngine(new AudioBackend());
-    const salsa = createMachine();
-    salsa.bpm = 120;
-    salsa.flavor = 'Salsa';
-    engine.machine = salsa;
-    const salsaBeat = engine.beatTime;
-
-    const merengue = createMachine();
-    merengue.bpm = 120;
-    merengue.flavor = 'Merengue';
-    engine.machine = merengue;
-    expect(engine.beatTime).toBe(salsaBeat / 2);
+    const machine = createMachine();
+    machine.bpm = 120;
+    engine.machine = machine;
+    expect(engine.beatTime).toBe(0.5);
   });
 
   it('exposes instrument notes through the engine', () => {
@@ -74,6 +70,7 @@ describe('BeatEngine', () => {
         id: 'piano',
         keyedInstrument: true,
         pitchOffset: 60,
+        soundSource: 'soundfont',
         programs: [{ title: 'Simple', length: 4, notes: [{ index: 0, pitch: 0 }] }],
       }),
     ];
@@ -83,30 +80,37 @@ describe('BeatEngine', () => {
     ]);
   });
 
-  it('play and stop toggle playing state with a ready mixer', async () => {
-    vi.stubGlobal(
-      'fetch',
-      vi.fn(async () => new Response('[]', { status: 200, headers: { 'Content-Type': 'application/json' } })),
-    );
+  it('play and stop toggle playing state with soundfonts', async () => {
     vi.useFakeTimers();
-    const backend = new AudioBackend();
-    const engine = new BeatEngine(backend);
-    await backend.whenReady;
-    backend.ready = true;
-    const playSpy = vi.spyOn(backend, 'play').mockImplementation(() => undefined);
+    const mixer = new AudioBackend();
+    const soundfonts = new SoundFontBackend();
+    const playSf = vi.spyOn(soundfonts, 'play').mockImplementation(() => undefined);
+    vi.spyOn(soundfonts, 'ensureLoaded').mockResolvedValue(undefined);
+    Object.defineProperty(soundfonts, 'ready', { get: () => true });
+
+    const engine = new BeatEngine(mixer, soundfonts);
+    await mixer.whenReady;
+    mixer.ready = true;
     const machine = createMachine();
-    machine.instruments = [createInstrument()];
+    machine.instruments = [
+      createInstrument({
+        id: 'bandoneon',
+        keyedInstrument: true,
+        pitchOffset: 48,
+        soundSource: 'soundfont',
+        programs: [{ title: 'Simple', length: 4, notes: [{ index: 0, pitch: 0 }] }],
+      }),
+    ];
     engine.machine = machine;
 
     engine.play();
     expect(engine.playing).toBe(true);
     await Promise.resolve();
     await Promise.resolve();
-    expect(playSpy).toHaveBeenCalled();
+    expect(playSf).toHaveBeenCalled();
 
     engine.stop();
     expect(engine.playing).toBe(false);
     vi.useRealTimers();
-    vi.unstubAllGlobals();
   });
 });
