@@ -10,6 +10,9 @@ export class MachineXMLLoader {
   loadMachine(xmlDocument: Document): IMachine {
     const machineElement = xmlDocument.getElementsByTagNameNS(this.NS_BEAT_MACHINE, 'Machine')[0];
     const machine: IMachine = createMachine();
+    if (!machineElement) {
+      return machine;
+    }
 
     const processors: {
       [key: string]: (node: Element) => any;
@@ -49,6 +52,9 @@ export class MachineXMLLoader {
       playBothHands: childValue('playBothHands', 'false') === 'true',
       leftHandPitchOffset: parseInt(childValue('leftHandPitchOffset', '0'), 10),
       volume: parseFloat(childValue('volume', '1.0')),
+      soundSource: childValue('soundSource', 'sample') === 'soundfont' ? 'soundfont' : 'sample',
+      midiProgram: parseInt(childValue('midiProgram', '0'), 10),
+      soundfontId: childValue('soundfontId', 'gm'),
     };
 
     const programs = children.filter((node) => node.localName === 'programs')[0];

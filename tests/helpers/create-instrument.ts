@@ -19,6 +19,9 @@ export function createInstrument(overrides: Partial<IInstrument> = {}): IInstrum
     playBothHands: false,
     leftHandPitchOffset: 0,
     volume: 1,
+    soundSource: 'sample',
+    midiProgram: 0,
+    soundfontId: 'gm',
     ...overrides,
   };
 }

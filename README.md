@@ -1,7 +1,6 @@
 # The Salsa Beat Machine
 
-Combine and arrange musical instruments to create different Salsa tunes. Great for musicians and dancers who want
-to practice their Salsa timing and train their ears.
+Combine and arrange musical instruments to create different Salsa, Merengue, and Tango grooves. Great for musicians and dancers who want to practice timing and train their ears.
 
 Check out the [online version](https://www.salsabeatmachine.org/)
 
@@ -11,7 +10,9 @@ Built with [Next.js](https://nextjs.org/).
 
 ## Local development
 
-Audio samples live in `public/assets/audio/samples/` (one WAV per instrument/note, plus `manifest.json`) and are versioned with the repo.
+- WAV samples (Salsa / Merengue): `public/assets/audio/samples/`
+- SoundFonts (Tango): `public/assets/audio/soundfonts/` (see [CREDITS.md](CREDITS.md))
+- FluidSynth runtime helper: `public/vendor/libfluidsynth-2.4.6.js`
 
 ```shell
 npm install

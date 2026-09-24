@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Machine xmlns="http://www.salsabeatmachine.org/xns/bm" xmlns:ns1="http://www.salsabeatmachine.org/xns/instruments">
+    <instrumentList>
+
+        
+
+        <!-- Programas coordinados: 0 Marcato Di Sarli; 1 Sincopa Troilo; 2 Milonga; 3 Vals Criollo; 4 Yumba Pugliese; 5 D'Arienzo; 6 Canaro; 7 Biagi; 8 Tanturi; 9 De Caro; 10 Fresedo; 11 Calo; 12 Laurenz; 13 Salgan; 14 Guardia Vieja; 15 Habanera; 16 3-3-2 Nuevo; 17 Arrastre Dramatico; 18 Bordoneo; 19 Practica Basica; 20 Marcato Pesado; 21 Sincopa Ligera. --><ns1:Bandoneon title="Bandoneon">
+            <ns1:enabled>true</ns1:enabled>
+            <ns1:activeProgram>0</ns1:activeProgram>
+            <ns1:keyedInstrument>true</ns1:keyedInstrument>
+            <ns1:pitchOffset>48</ns1:pitchOffset>
+            <ns1:soundSource>soundfont</ns1:soundSource>
+            <ns1:soundfontId>bandoneon</ns1:soundfontId>
+            <ns1:midiProgram>0</ns1:midiProgram>
+            <ns1:volume>0.9</ns1:volume>
+            <ns1:programs>
+
+                
+                <Program title="Marcato Di Sarli" length="16">
+                    <Note index="0" pitch="0" velocity="0.96" />
+                    <Note index="3" pitch="3" velocity="0.66" />
+                    <Note index="4" pitch="7" velocity="0.84" />
+                    <Note index="6" pitch="8" velocity="0.62" />
+                    <Note index="7" pitch="7" velocity="0.72" />
+                    <Note index="8" pitch="5" velocity="0.82" />
+                    <Note index="10" pitch="3" velocity="0.70" />
+                    <Note index="12" pitch="2" velocity="0.76" />
+                    <Note index="14" pitch="7" velocity="0.88" />
+                    <Note index="15" pitch="0" velocity="0.82" />
+                </Program>
+
+                
+                <Program title="Sincopa Troilo" length="16">
+                    <Note index="0" pitch="0" velocity="0.96" />
+                    <Note index="3" pitch="3" velocity="0.76" />
+                    <Note index="6" pitch="7" velocity="0.90" />
+                    <Note index="7" pitch="8" velocity="0.68" />
+                    <Note index="9" pitch="7" velocity="0.78" />
+                    <Note index="11" pitch="5" velocity="0.70" />
+                    <Note index="14" pitch="2" velocity="0.86" />
+                    <Note index="15" pitch="0" velocity="0.90" />
+                </Program>
+
+                
+                <Program title="Milonga" length="16">
+                    <Note index="0" pitch="0" velocity="0.94" />
+                    <Note index="2" pitch="3" velocity="0.64" />
+                    <Note index="3" pitch="7" velocity="0.74" />
+                    <Note index="4" pitch="8" velocity="0.82" />
+                    <Note index="6" pitch="7" velocity="0.66" />
+                    <Note index="8" pitch="5" velocity="0.88" />
+                    <Note index="10" pitch="3" velocity="0.66" />
+                    <Note index="11" pitch="2" velocity="0.72" />
+                    <Note index="12" pitch="7" velocity="0.86" />
+                    <Note index="14" pitch="2" velocity="0.70" />
+                    <Note index="15" pitch="0" velocity="0.88" />
+                </Program>
+
+                
+                <Program title="Vals Criollo" length="24">
+                    <Note index="0" pitch="0" velocity="0.92" />
+                    <Note index="4" pitch="3" velocity="0.64" />
+                    <Note index="8" pitch="7" velocity="0.78" />
+                    <Note index="12" pitch="8" velocity="0.88" />
+                    <Note index="16" pitch="7" velocity="0.66" />
+                    <Note index="20" pitch="2" velocity="0.78" />
+                    <Note index="22" pitch="7" velocity="0.72" />
+                    <Note index="23" pitch="0" velocity="0.84" />
+                </Program>
+
+            <Program title="Yumba Pugliese" length="16"><Note index="0" pitch="0" velocity="0.98" /><Note index="3" pitch="7" velocity="0.76" /><Note index="7" pitch="8" velocity="0.9" /><Note index="8" pitch="7" velocity="0.78" /><Note index="11" pitch="5" velocity="0.72" /><Note index="14" pitch="2" velocity="0.88" /><Note index="15" pitch="0" velocity="0.94" /></Program><Program title="D'Arienzo" length="16"><Note index="0" pitch="0" velocity="0.98" /><Note index="2" pitch="3" velocity="0.68" /><Note index="4" pitch="7" velocity="0.92" /><Note index="6" pitch="3" velocity="0.66" /><Note index="8" pitch="5" velocity="0.94" /><Note index="10" pitch="8" velocity="0.7" /><Note index="12" pitch="7" velocity="0.96" /><Note index="14" pitch="2" velocity="0.74" /><Note index="15" pitch="0" velocity="0.88" /></Program><Program title="Canaro" length="16"><Note index="0" pitch="0" velocity="0.94" /><Note index="4" pitch="3" velocity="0.76" /><Note index="8" pitch="5" velocity="0.86" /><Note index="12" pitch="7" velocity="0.92" /><Note index="15" pitch="0" velocity="0.78" /></Program><Program title="Biagi" length="16"><Note index="0" pitch="0" velocity="0.92" /><Note index="3" pitch="7" velocity="0.72" /><Note index="6" pitch="8" velocity="0.84" /><Note index="8" pitch="7" velocity="0.76" /><Note index="11" pitch="3" velocity="0.7" /><Note index="14" pitch="2" velocity="0.84" /><Note index="15" pitch="0" velocity="0.88" /></Program><Program title="Tanturi" length="16"><Note index="0" pitch="0" velocity="0.98" /><Note index="2" pitch="3" velocity="0.66" /><Note index="4" pitch="7" velocity="0.9" /><Note index="7" pitch="8" velocity="0.72" /><Note index="8" pitch="5" velocity="0.9" /><Note index="10" pitch="3" velocity="0.66" /><Note index="12" pitch="7" velocity="0.94" /><Note index="15" pitch="0" velocity="0.86" /></Program><Program title="De Caro" length="16"><Note index="0" pitch="0" velocity="0.9" /><Note index="2" pitch="2" velocity="0.6" /><Note index="4" pitch="3" velocity="0.72" /><Note index="6" pitch="7" velocity="0.82" /><Note index="8" pitch="8" velocity="0.78" /><Note index="10" pitch="7" velocity="0.68" /><Note index="12" pitch="11" velocity="0.84" /><Note index="15" pitch="0" velocity="0.82" /></Program><Program title="Fresedo" length="16"><Note index="0" pitch="0" velocity="0.82" /><Note index="4" pitch="7" velocity="0.7" /><Note index="8" pitch="8" velocity="0.74" /><Note index="12" pitch="7" velocity="0.72" /><Note index="15" pitch="0" velocity="0.68" /></Program><Program title="Calo" length="16"><Note index="0" pitch="0" velocity="0.88" /><Note index="3" pitch="3" velocity="0.62" /><Note index="4" pitch="7" velocity="0.76" /><Note index="8" pitch="5" velocity="0.82" /><Note index="11" pitch="8" velocity="0.6" /><Note index="12" pitch="7" velocity="0.84" /><Note index="15" pitch="0" velocity="0.76" /></Program><Program title="Laurenz" length="16"><Note index="0" pitch="0" velocity="0.98" /><Note index="2" pitch="3" velocity="0.7" /><Note index="3" pitch="7" velocity="0.8" /><Note index="6" pitch="8" velocity="0.86" /><Note index="8" pitch="5" velocity="0.9" /><Note index="10" pitch="3" velocity="0.68" /><Note index="11" pitch="7" velocity="0.8" /><Note index="14" pitch="2" velocity="0.86" /><Note index="15" pitch="0" velocity="0.94" /></Program><Program title="Salgan" length="16"><Note index="0" pitch="0" velocity="0.9" /><Note index="3" pitch="3" velocity="0.66" /><Note index="6" pitch="7" velocity="0.8" /><Note index="8" pitch="8" velocity="0.76" /><Note index="11" pitch="7" velocity="0.68" /><Note index="14" pitch="2" velocity="0.82" /><Note index="15" pitch="0" velocity="0.84" /></Program><Program title="Guardia Vieja" length="16"><Note index="0" pitch="0" velocity="0.92" /><Note index="4" pitch="3" velocity="0.72" /><Note index="8" pitch="7" velocity="0.82" /><Note index="12" pitch="5" velocity="0.8" /><Note index="15" pitch="0" velocity="0.76" /></Program><Program title="Habanera" length="16"><Note index="0" pitch="0" velocity="0.9" /><Note index="3" pitch="3" velocity="0.68" /><Note index="6" pitch="7" velocity="0.78" /><Note index="8" pitch="5" velocity="0.86" /><Note index="11" pitch="8" velocity="0.66" /><Note index="14" pitch="7" velocity="0.8" /><Note index="15" pitch="0" velocity="0.82" /></Program><Program title="3-3-2 Nuevo" length="16"><Note index="0" pitch="0" velocity="0.94" /><Note index="3" pitch="3" velocity="0.76" /><Note index="6" pitch="7" velocity="0.86" /><Note index="8" pitch="8" velocity="0.84" /><Note index="11" pitch="7" velocity="0.72" /><Note index="14" pitch="2" velocity="0.88" /><Note index="15" pitch="0" velocity="0.9" /></Program><Program title="Arrastre Dramatico" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="7" pitch="8" velocity="0.88" /><Note index="8" pitch="7" velocity="0.76" /><Note index="14" pitch="2" velocity="0.86" /><Note index="15" pitch="0" velocity="0.96" /></Program><Program title="Bordoneo" length="16"><Note index="0" pitch="0" velocity="0.86" /><Note index="4" pitch="7" velocity="0.76" /><Note index="8" pitch="5" velocity="0.82" /><Note index="12" pitch="7" velocity="0.86" /><Note index="15" pitch="0" velocity="0.78" /></Program><Program title="Practica Basica" length="16"><Note index="0" pitch="0" velocity="0.82" /><Note index="8" pitch="5" velocity="0.76" /><Note index="15" pitch="0" velocity="0.68" /></Program><Program title="Marcato Pesado" length="16"><Note index="0" pitch="0" velocity="0.98" /><Note index="4" pitch="7" velocity="0.88" /><Note index="8" pitch="5" velocity="0.94" /><Note index="12" pitch="7" velocity="0.98" /><Note index="15" pitch="0" velocity="0.8" /></Program><Program title="Sincopa Ligera" length="16"><Note index="0" pitch="0" velocity="0.88" /><Note index="3" pitch="3" velocity="0.64" /><Note index="7" pitch="7" velocity="0.74" /><Note index="8" pitch="5" velocity="0.82" /><Note index="11" pitch="8" velocity="0.62" /><Note index="15" pitch="0" velocity="0.78" /></Program></ns1:programs>
+        </ns1:Bandoneon>
+
+        <ns1:Piano title="Piano">
+            <ns1:enabled>true</ns1:enabled>
+            <ns1:activeProgram>0</ns1:activeProgram>
+            <ns1:keyedInstrument>true</ns1:keyedInstrument>
+            <ns1:pitchOffset>60</ns1:pitchOffset>
+            <ns1:soundSource>soundfont</ns1:soundSource>
+            <ns1:soundfontId>gm</ns1:soundfontId>
+            <ns1:midiProgram>0</ns1:midiProgram>
+            <ns1:volume>0.7</ns1:volume>
+            <ns1:programs>
+
+                
+                <Program title="Marcato Di Sarli" length="16">
+                    <Note index="0" pitch="0" velocity="0.92" />
+                    <Note index="0" pitch="3" velocity="0.78" />
+                    <Note index="0" pitch="7" velocity="0.82" />
+
+                    <Note index="4" pitch="0" velocity="0.72" />
+                    <Note index="4" pitch="3" velocity="0.62" />
+                    <Note index="4" pitch="7" velocity="0.68" />
+
+                    <Note index="8" pitch="5" velocity="0.90" />
+                    <Note index="8" pitch="8" velocity="0.76" />
+                    <Note index="8" pitch="12" velocity="0.80" />
+
+                    <Note index="12" pitch="7" velocity="0.96" />
+                    <Note index="12" pitch="11" velocity="0.80" />
+                    <Note index="12" pitch="14" velocity="0.84" />
+                </Program>
+
+                
+                <Program title="Sincopa Troilo" length="16">
+                    <Note index="0" pitch="0" velocity="0.86" />
+                    <Note index="0" pitch="3" velocity="0.72" />
+                    <Note index="0" pitch="7" velocity="0.76" />
+
+                    <Note index="3" pitch="0" velocity="0.64" />
+                    <Note index="3" pitch="3" velocity="0.56" />
+                    <Note index="3" pitch="7" velocity="0.60" />
+
+                    <Note index="6" pitch="5" velocity="0.82" />
+                    <Note index="6" pitch="8" velocity="0.68" />
+                    <Note index="6" pitch="12" velocity="0.72" />
+
+                    <Note index="8" pitch="7" velocity="0.90" />
+                    <Note index="8" pitch="11" velocity="0.74" />
+                    <Note index="8" pitch="14" velocity="0.78" />
+
+                    <Note index="11" pitch="7" velocity="0.64" />
+                    <Note index="11" pitch="11" velocity="0.56" />
+                    <Note index="11" pitch="14" velocity="0.60" />
+
+                    <Note index="14" pitch="0" velocity="0.84" />
+                    <Note index="14" pitch="3" velocity="0.70" />
+                    <Note index="14" pitch="7" velocity="0.74" />
+                </Program>
+
+                
+                <Program title="Milonga" length="16">
+                    <Note index="0" pitch="0" velocity="0.90" />
+                    <Note index="0" pitch="3" velocity="0.74" />
+                    <Note index="0" pitch="7" velocity="0.78" />
+
+                    <Note index="3" pitch="0" velocity="0.60" />
+                    <Note index="3" pitch="3" velocity="0.52" />
+
+                    <Note index="6" pitch="5" velocity="0.78" />
+                    <Note index="6" pitch="8" velocity="0.64" />
+                    <Note index="6" pitch="12" velocity="0.68" />
+
+                    <Note index="8" pitch="7" velocity="0.88" />
+                    <Note index="8" pitch="11" velocity="0.72" />
+                    <Note index="8" pitch="14" velocity="0.76" />
+
+                    <Note index="11" pitch="7" velocity="0.62" />
+                    <Note index="11" pitch="11" velocity="0.54" />
+
+                    <Note index="14" pitch="0" velocity="0.80" />
+                    <Note index="14" pitch="3" velocity="0.66" />
+                    <Note index="14" pitch="7" velocity="0.70" />
+                </Program>
+
+                
+                <Program title="Vals Criollo" length="24">
+                    <Note index="0" pitch="0" velocity="0.90" />
+                    <Note index="4" pitch="3" velocity="0.62" />
+                    <Note index="4" pitch="7" velocity="0.66" />
+                    <Note index="8" pitch="3" velocity="0.58" />
+                    <Note index="8" pitch="7" velocity="0.62" />
+
+                    <Note index="12" pitch="5" velocity="0.86" />
+                    <Note index="16" pitch="8" velocity="0.60" />
+                    <Note index="16" pitch="12" velocity="0.64" />
+                    <Note index="20" pitch="7" velocity="0.72" />
+                    <Note index="20" pitch="11" velocity="0.64" />
+                    <Note index="20" pitch="14" velocity="0.68" />
+                </Program>
+
+            <Program title="Yumba Pugliese" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="0" pitch="3" velocity="0.86" /><Note index="0" pitch="7" velocity="0.9" /><Note index="3" pitch="0" velocity="0.58" /><Note index="3" pitch="3" velocity="0.52" /><Note index="3" pitch="7" velocity="0.56" /><Note index="8" pitch="5" velocity="0.98" /><Note index="8" pitch="8" velocity="0.84" /><Note index="8" pitch="12" velocity="0.88" /><Note index="11" pitch="7" velocity="0.62" /><Note index="11" pitch="11" velocity="0.56" /><Note index="11" pitch="14" velocity="0.6" /><Note index="14" pitch="7" velocity="0.94" /><Note index="14" pitch="11" velocity="0.8" /><Note index="14" pitch="14" velocity="0.84" /></Program><Program title="D'Arienzo" length="16"><Note index="0" pitch="0" velocity="0.98" /><Note index="0" pitch="3" velocity="0.84" /><Note index="0" pitch="7" velocity="0.88" /><Note index="4" pitch="0" velocity="0.9" /><Note index="4" pitch="3" velocity="0.76" /><Note index="4" pitch="7" velocity="0.82" /><Note index="8" pitch="5" velocity="0.96" /><Note index="8" pitch="8" velocity="0.82" /><Note index="8" pitch="12" velocity="0.86" /><Note index="12" pitch="7" velocity="1" /><Note index="12" pitch="11" velocity="0.84" /><Note index="12" pitch="14" velocity="0.88" /><Note index="15" pitch="7" velocity="0.56" /><Note index="15" pitch="11" velocity="0.5" /></Program><Program title="Canaro" length="16"><Note index="0" pitch="0" velocity="0.92" /><Note index="0" pitch="3" velocity="0.78" /><Note index="0" pitch="7" velocity="0.82" /><Note index="4" pitch="0" velocity="0.82" /><Note index="4" pitch="3" velocity="0.68" /><Note index="4" pitch="7" velocity="0.72" /><Note index="8" pitch="5" velocity="0.9" /><Note index="8" pitch="8" velocity="0.74" /><Note index="8" pitch="12" velocity="0.78" /><Note index="12" pitch="7" velocity="0.94" /><Note index="12" pitch="11" velocity="0.78" /><Note index="12" pitch="14" velocity="0.82" /></Program><Program title="Biagi" length="16"><Note index="0" pitch="0" velocity="0.9" /><Note index="0" pitch="3" velocity="0.76" /><Note index="0" pitch="7" velocity="0.8" /><Note index="3" pitch="0" velocity="0.58" /><Note index="3" pitch="3" velocity="0.5" /><Note index="6" pitch="5" velocity="0.86" /><Note index="6" pitch="8" velocity="0.72" /><Note index="8" pitch="7" velocity="0.94" /><Note index="8" pitch="11" velocity="0.78" /><Note index="11" pitch="7" velocity="0.62" /><Note index="11" pitch="11" velocity="0.54" /><Note index="14" pitch="0" velocity="0.88" /><Note index="14" pitch="3" velocity="0.72" /></Program><Program title="Tanturi" length="16"><Note index="0" pitch="0" velocity="0.96" /><Note index="0" pitch="3" velocity="0.82" /><Note index="0" pitch="7" velocity="0.86" /><Note index="4" pitch="0" velocity="0.88" /><Note index="4" pitch="3" velocity="0.74" /><Note index="4" pitch="7" velocity="0.78" /><Note index="8" pitch="5" velocity="0.94" /><Note index="8" pitch="8" velocity="0.8" /><Note index="8" pitch="12" velocity="0.84" /><Note index="12" pitch="7" velocity="0.98" /><Note index="12" pitch="11" velocity="0.82" /><Note index="12" pitch="14" velocity="0.86" /></Program><Program title="De Caro" length="16"><Note index="0" pitch="0" velocity="0.84" /><Note index="0" pitch="3" velocity="0.7" /><Note index="0" pitch="7" velocity="0.74" /><Note index="4" pitch="3" velocity="0.66" /><Note index="4" pitch="7" velocity="0.7" /><Note index="4" pitch="10" velocity="0.64" /><Note index="8" pitch="5" velocity="0.82" /><Note index="8" pitch="8" velocity="0.68" /><Note index="8" pitch="12" velocity="0.72" /><Note index="12" pitch="7" velocity="0.88" /><Note index="12" pitch="11" velocity="0.74" /><Note index="12" pitch="14" velocity="0.78" /></Program><Program title="Fresedo" length="16"><Note index="0" pitch="0" velocity="0.78" /><Note index="0" pitch="3" velocity="0.66" /><Note index="0" pitch="7" velocity="0.7" /><Note index="4" pitch="0" velocity="0.62" /><Note index="4" pitch="3" velocity="0.54" /><Note index="4" pitch="7" velocity="0.58" /><Note index="8" pitch="5" velocity="0.76" /><Note index="8" pitch="8" velocity="0.64" /><Note index="8" pitch="12" velocity="0.68" /><Note index="12" pitch="7" velocity="0.8" /><Note index="12" pitch="11" velocity="0.66" /><Note index="12" pitch="14" velocity="0.7" /></Program><Program title="Calo" length="16"><Note index="0" pitch="0" velocity="0.86" /><Note index="0" pitch="3" velocity="0.72" /><Note index="0" pitch="7" velocity="0.76" /><Note index="4" pitch="0" velocity="0.72" /><Note index="4" pitch="3" velocity="0.6" /><Note index="4" pitch="7" velocity="0.64" /><Note index="8" pitch="5" velocity="0.84" /><Note index="8" pitch="8" velocity="0.7" /><Note index="8" pitch="12" velocity="0.74" /><Note index="12" pitch="7" velocity="0.88" /><Note index="12" pitch="11" velocity="0.72" /><Note index="12" pitch="14" velocity="0.76" /></Program><Program title="Laurenz" length="16"><Note index="0" pitch="0" velocity="0.92" /><Note index="0" pitch="3" velocity="0.78" /><Note index="0" pitch="7" velocity="0.82" /><Note index="3" pitch="0" velocity="0.62" /><Note index="3" pitch="3" velocity="0.54" /><Note index="6" pitch="5" velocity="0.86" /><Note index="6" pitch="8" velocity="0.72" /><Note index="8" pitch="5" velocity="0.92" /><Note index="8" pitch="8" velocity="0.78" /><Note index="11" pitch="7" velocity="0.68" /><Note index="11" pitch="11" velocity="0.6" /><Note index="14" pitch="7" velocity="0.94" /><Note index="14" pitch="11" velocity="0.78" /><Note index="14" pitch="14" velocity="0.82" /></Program><Program title="Salgan" length="16"><Note index="0" pitch="0" velocity="0.88" /><Note index="0" pitch="3" velocity="0.74" /><Note index="0" pitch="7" velocity="0.78" /><Note index="3" pitch="3" velocity="0.6" /><Note index="3" pitch="7" velocity="0.64" /><Note index="6" pitch="5" velocity="0.84" /><Note index="6" pitch="8" velocity="0.7" /><Note index="8" pitch="7" velocity="0.9" /><Note index="8" pitch="11" velocity="0.76" /><Note index="11" pitch="11" velocity="0.62" /><Note index="11" pitch="14" velocity="0.66" /><Note index="14" pitch="0" velocity="0.86" /><Note index="14" pitch="3" velocity="0.72" /><Note index="14" pitch="7" velocity="0.76" /></Program><Program title="Guardia Vieja" length="16"><Note index="0" pitch="0" velocity="0.9" /><Note index="0" pitch="3" velocity="0.76" /><Note index="0" pitch="7" velocity="0.8" /><Note index="4" pitch="0" velocity="0.74" /><Note index="4" pitch="3" velocity="0.62" /><Note index="4" pitch="7" velocity="0.66" /><Note index="8" pitch="7" velocity="0.86" /><Note index="8" pitch="11" velocity="0.7" /><Note index="8" pitch="14" velocity="0.74" /><Note index="12" pitch="5" velocity="0.82" /><Note index="12" pitch="8" velocity="0.68" /><Note index="12" pitch="12" velocity="0.72" /></Program><Program title="Habanera" length="16"><Note index="0" pitch="0" velocity="0.88" /><Note index="0" pitch="3" velocity="0.74" /><Note index="3" pitch="0" velocity="0.58" /><Note index="6" pitch="5" velocity="0.8" /><Note index="6" pitch="8" velocity="0.66" /><Note index="8" pitch="7" velocity="0.88" /><Note index="8" pitch="11" velocity="0.72" /><Note index="11" pitch="7" velocity="0.6" /><Note index="14" pitch="0" velocity="0.84" /><Note index="14" pitch="3" velocity="0.7" /></Program><Program title="3-3-2 Nuevo" length="16"><Note index="0" pitch="0" velocity="0.94" /><Note index="0" pitch="3" velocity="0.8" /><Note index="0" pitch="7" velocity="0.84" /><Note index="3" pitch="0" velocity="0.68" /><Note index="3" pitch="3" velocity="0.58" /><Note index="6" pitch="5" velocity="0.88" /><Note index="6" pitch="8" velocity="0.74" /><Note index="8" pitch="7" velocity="0.96" /><Note index="8" pitch="11" velocity="0.8" /><Note index="11" pitch="7" velocity="0.68" /><Note index="11" pitch="11" velocity="0.58" /><Note index="14" pitch="0" velocity="0.92" /><Note index="14" pitch="3" velocity="0.76" /><Note index="14" pitch="7" velocity="0.8" /></Program><Program title="Arrastre Dramatico" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="0" pitch="3" velocity="0.86" /><Note index="0" pitch="7" velocity="0.9" /><Note index="7" pitch="5" velocity="0.62" /><Note index="7" pitch="8" velocity="0.56" /><Note index="8" pitch="5" velocity="0.98" /><Note index="8" pitch="8" velocity="0.84" /><Note index="8" pitch="12" velocity="0.88" /><Note index="14" pitch="7" velocity="0.92" /><Note index="14" pitch="11" velocity="0.78" /><Note index="14" pitch="14" velocity="0.82" /></Program><Program title="Bordoneo" length="16"><Note index="0" pitch="0" velocity="0.88" /><Note index="2" pitch="7" velocity="0.54" /><Note index="4" pitch="3" velocity="0.7" /><Note index="6" pitch="7" velocity="0.54" /><Note index="8" pitch="5" velocity="0.84" /><Note index="10" pitch="12" velocity="0.56" /><Note index="12" pitch="7" velocity="0.9" /><Note index="15" pitch="11" velocity="0.6" /></Program><Program title="Practica Basica" length="16"><Note index="0" pitch="0" velocity="0.86" /><Note index="0" pitch="3" velocity="0.72" /><Note index="0" pitch="7" velocity="0.76" /><Note index="4" pitch="0" velocity="0.72" /><Note index="4" pitch="3" velocity="0.6" /><Note index="4" pitch="7" velocity="0.64" /><Note index="8" pitch="5" velocity="0.84" /><Note index="8" pitch="8" velocity="0.7" /><Note index="8" pitch="12" velocity="0.74" /><Note index="12" pitch="7" velocity="0.88" /><Note index="12" pitch="11" velocity="0.72" /><Note index="12" pitch="14" velocity="0.76" /></Program><Program title="Marcato Pesado" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="0" pitch="3" velocity="0.86" /><Note index="0" pitch="7" velocity="0.9" /><Note index="4" pitch="0" velocity="0.9" /><Note index="4" pitch="3" velocity="0.76" /><Note index="4" pitch="7" velocity="0.8" /><Note index="8" pitch="5" velocity="1" /><Note index="8" pitch="8" velocity="0.86" /><Note index="8" pitch="12" velocity="0.9" /><Note index="12" pitch="7" velocity="1" /><Note index="12" pitch="11" velocity="0.86" /><Note index="12" pitch="14" velocity="0.9" /></Program><Program title="Sincopa Ligera" length="16"><Note index="2" pitch="0" velocity="0.58" /><Note index="2" pitch="3" velocity="0.5" /><Note index="6" pitch="5" velocity="0.66" /><Note index="6" pitch="8" velocity="0.56" /><Note index="10" pitch="7" velocity="0.7" /><Note index="10" pitch="11" velocity="0.6" /><Note index="14" pitch="0" velocity="0.64" /><Note index="14" pitch="3" velocity="0.54" /></Program></ns1:programs>
+        </ns1:Piano>
+
+        <ns1:Bass title="Bass">
+            <ns1:enabled>true</ns1:enabled>
+            <ns1:activeProgram>0</ns1:activeProgram>
+            <ns1:keyedInstrument>true</ns1:keyedInstrument>
+            <ns1:pitchOffset>36</ns1:pitchOffset>
+            <ns1:soundSource>soundfont</ns1:soundSource>
+            <ns1:soundfontId>gm</ns1:soundfontId>
+            <ns1:midiProgram>32</ns1:midiProgram>
+            <ns1:volume>0.85</ns1:volume>
+            <ns1:programs>
+
+                <Program title="Marcato Di Sarli" length="16">
+                    <Note index="0" pitch="0" velocity="1.0" />
+                    <Note index="4" pitch="7" velocity="0.84" />
+                    <Note index="8" pitch="5" velocity="0.94" />
+                    <Note index="12" pitch="7" velocity="1.0" />
+                </Program>
+
+                <Program title="Sincopa Troilo" length="16">
+                    <Note index="0" pitch="0" velocity="1.0" />
+                    <Note index="3" pitch="7" velocity="0.72" />
+                    <Note index="6" pitch="5" velocity="0.88" />
+                    <Note index="8" pitch="7" velocity="0.96" />
+                    <Note index="11" pitch="2" velocity="0.68" />
+                    <Note index="14" pitch="7" velocity="0.84" />
+                </Program>
+
+                <Program title="Milonga" length="16">
+                    <Note index="0" pitch="0" velocity="0.98" />
+                    <Note index="3" pitch="7" velocity="0.72" />
+                    <Note index="6" pitch="0" velocity="0.84" />
+                    <Note index="8" pitch="5" velocity="0.94" />
+                    <Note index="11" pitch="7" velocity="0.74" />
+                    <Note index="14" pitch="2" velocity="0.82" />
+                </Program>
+
+                <Program title="Vals Criollo" length="24">
+                    <Note index="0" pitch="0" velocity="1.0" />
+                    <Note index="4" pitch="7" velocity="0.70" />
+                    <Note index="8" pitch="7" velocity="0.64" />
+                    <Note index="12" pitch="5" velocity="0.94" />
+                    <Note index="16" pitch="0" velocity="0.68" />
+                    <Note index="20" pitch="7" velocity="0.88" />
+                </Program>
+
+            <Program title="Yumba Pugliese" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="3" pitch="7" velocity="0.72" /><Note index="8" pitch="5" velocity="1" /><Note index="11" pitch="7" velocity="0.76" /><Note index="14" pitch="7" velocity="0.96" /></Program><Program title="D'Arienzo" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="4" pitch="7" velocity="0.9" /><Note index="8" pitch="5" velocity="0.98" /><Note index="12" pitch="7" velocity="1" /></Program><Program title="Canaro" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="4" pitch="7" velocity="0.86" /><Note index="8" pitch="5" velocity="0.94" /><Note index="12" pitch="7" velocity="0.96" /></Program><Program title="Biagi" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="3" pitch="7" velocity="0.72" /><Note index="8" pitch="5" velocity="0.96" /><Note index="11" pitch="7" velocity="0.72" /><Note index="14" pitch="7" velocity="0.88" /></Program><Program title="Tanturi" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="4" pitch="7" velocity="0.9" /><Note index="8" pitch="5" velocity="0.98" /><Note index="12" pitch="7" velocity="1" /></Program><Program title="De Caro" length="16"><Note index="0" pitch="0" velocity="0.94" /><Note index="4" pitch="3" velocity="0.74" /><Note index="8" pitch="5" velocity="0.88" /><Note index="12" pitch="7" velocity="0.94" /></Program><Program title="Fresedo" length="16"><Note index="0" pitch="0" velocity="0.9" /><Note index="4" pitch="7" velocity="0.76" /><Note index="8" pitch="5" velocity="0.84" /><Note index="12" pitch="7" velocity="0.88" /></Program><Program title="Calo" length="16"><Note index="0" pitch="0" velocity="0.96" /><Note index="4" pitch="7" velocity="0.82" /><Note index="8" pitch="5" velocity="0.9" /><Note index="12" pitch="7" velocity="0.94" /></Program><Program title="Laurenz" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="3" pitch="7" velocity="0.74" /><Note index="8" pitch="5" velocity="0.96" /><Note index="11" pitch="7" velocity="0.74" /><Note index="14" pitch="7" velocity="0.92" /></Program><Program title="Salgan" length="16"><Note index="0" pitch="0" velocity="0.96" /><Note index="3" pitch="7" velocity="0.72" /><Note index="6" pitch="5" velocity="0.84" /><Note index="8" pitch="7" velocity="0.92" /><Note index="11" pitch="2" velocity="0.68" /><Note index="14" pitch="7" velocity="0.86" /></Program><Program title="Guardia Vieja" length="16"><Note index="0" pitch="0" velocity="0.98" /><Note index="4" pitch="7" velocity="0.8" /><Note index="8" pitch="7" velocity="0.9" /><Note index="12" pitch="5" velocity="0.86" /></Program><Program title="Habanera" length="16"><Note index="0" pitch="0" velocity="0.98" /><Note index="3" pitch="7" velocity="0.7" /><Note index="6" pitch="0" velocity="0.8" /><Note index="8" pitch="5" velocity="0.92" /><Note index="11" pitch="7" velocity="0.7" /><Note index="14" pitch="0" velocity="0.82" /></Program><Program title="3-3-2 Nuevo" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="3" pitch="7" velocity="0.76" /><Note index="6" pitch="5" velocity="0.9" /><Note index="8" pitch="7" velocity="0.98" /><Note index="11" pitch="2" velocity="0.72" /><Note index="14" pitch="7" velocity="0.92" /></Program><Program title="Arrastre Dramatico" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="7" pitch="7" velocity="0.72" /><Note index="8" pitch="5" velocity="1" /><Note index="14" pitch="7" velocity="0.96" /></Program><Program title="Bordoneo" length="16"><Note index="0" pitch="0" velocity="0.96" /><Note index="4" pitch="3" velocity="0.76" /><Note index="8" pitch="5" velocity="0.9" /><Note index="12" pitch="7" velocity="0.96" /></Program><Program title="Practica Basica" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="4" pitch="7" velocity="0.86" /><Note index="8" pitch="5" velocity="0.94" /><Note index="12" pitch="7" velocity="0.98" /></Program><Program title="Marcato Pesado" length="16"><Note index="0" pitch="0" velocity="1" /><Note index="4" pitch="7" velocity="0.94" /><Note index="8" pitch="5" velocity="1" /><Note index="12" pitch="7" velocity="1" /></Program><Program title="Sincopa Ligera" length="16"><Note index="0" pitch="0" velocity="0.94" /><Note index="4" pitch="7" velocity="0.8" /><Note index="8" pitch="5" velocity="0.88" /><Note index="12" pitch="7" velocity="0.92" /></Program></ns1:programs>
+        </ns1:Bass>
+
+        <ns1:Violin title="Violin">
+            <ns1:enabled>true</ns1:enabled>
+            <ns1:activeProgram>0</ns1:activeProgram>
+            <ns1:keyedInstrument>true</ns1:keyedInstrument>
+            <ns1:pitchOffset>67</ns1:pitchOffset>
+            <ns1:soundSource>soundfont</ns1:soundSource>
+            <ns1:soundfontId>gm</ns1:soundfontId>
+            <ns1:midiProgram>40</ns1:midiProgram>
+            <ns1:volume>0.58</ns1:volume>
+            <ns1:programs>
+
+                
+                <Program title="Marcato Di Sarli" length="16">
+                    <Note index="2" pitch="12" velocity="0.44" />
+                    <Note index="6" pitch="8" velocity="0.40" />
+                    <Note index="10" pitch="5" velocity="0.46" />
+                    <Note index="14" pitch="12" velocity="0.42" />
+                </Program>
+
+                <Program title="Sincopa Troilo" length="16">
+                    <Note index="2" pitch="15" velocity="0.42" />
+                    <Note index="5" pitch="12" velocity="0.46" />
+                    <Note index="10" pitch="10" velocity="0.42" />
+                    <Note index="13" pitch="8" velocity="0.46" />
+                </Program>
+
+                <Program title="Milonga" length="16">
+                    <Note index="2" pitch="12" velocity="0.38" />
+                    <Note index="6" pitch="15" velocity="0.42" />
+                    <Note index="10" pitch="10" velocity="0.38" />
+                    <Note index="14" pitch="12" velocity="0.44" />
+                </Program>
+
+                <Program title="Vals Criollo" length="24">
+                    <Note index="2" pitch="12" velocity="0.42" />
+                    <Note index="6" pitch="15" velocity="0.38" />
+                    <Note index="10" pitch="12" velocity="0.40" />
+                    <Note index="14" pitch="10" velocity="0.42" />
+                    <Note index="18" pitch="8" velocity="0.38" />
+                    <Note index="22" pitch="12" velocity="0.44" />
+                </Program>
+
+            <Program title="Yumba Pugliese" length="16"><Note index="2" pitch="12" velocity="0.38" /><Note index="6" pitch="15" velocity="0.46" /><Note index="10" pitch="10" velocity="0.4" /><Note index="13" pitch="8" velocity="0.44" /></Program><Program title="D'Arienzo" length="16"><Note index="3" pitch="12" velocity="0.38" /><Note index="7" pitch="8" velocity="0.36" /><Note index="11" pitch="10" velocity="0.4" /><Note index="15" pitch="8" velocity="0.34" /></Program><Program title="Canaro" length="16"><Note index="2" pitch="12" velocity="0.34" /><Note index="6" pitch="8" velocity="0.32" /><Note index="10" pitch="10" velocity="0.34" /><Note index="14" pitch="12" velocity="0.36" /></Program><Program title="Biagi" length="16"><Note index="5" pitch="15" velocity="0.4" /><Note index="9" pitch="12" velocity="0.36" /><Note index="13" pitch="8" velocity="0.4" /></Program><Program title="Tanturi" length="16"><Note index="3" pitch="12" velocity="0.34" /><Note index="7" pitch="15" velocity="0.36" /><Note index="11" pitch="10" velocity="0.34" /><Note index="15" pitch="8" velocity="0.32" /></Program><Program title="De Caro" length="16"><Note index="1" pitch="12" velocity="0.42" /><Note index="5" pitch="15" velocity="0.38" /><Note index="9" pitch="13" velocity="0.4" /><Note index="13" pitch="16" velocity="0.44" /></Program><Program title="Fresedo" length="16"><Note index="2" pitch="12" velocity="0.46" /><Note index="6" pitch="15" velocity="0.44" /><Note index="10" pitch="13" velocity="0.42" /><Note index="14" pitch="12" velocity="0.46" /></Program><Program title="Calo" length="16"><Note index="2" pitch="12" velocity="0.4" /><Note index="6" pitch="8" velocity="0.38" /><Note index="10" pitch="15" velocity="0.4" /><Note index="14" pitch="12" velocity="0.42" /></Program><Program title="Laurenz" length="16"><Note index="5" pitch="12" velocity="0.34" /><Note index="9" pitch="15" velocity="0.36" /><Note index="13" pitch="10" velocity="0.34" /></Program><Program title="Salgan" length="16"><Note index="2" pitch="17" velocity="0.38" /><Note index="5" pitch="15" velocity="0.36" /><Note index="10" pitch="13" velocity="0.38" /><Note index="13" pitch="12" velocity="0.4" /></Program><Program title="Guardia Vieja" length="16"><Note index="2" pitch="12" velocity="0.32" /><Note index="6" pitch="8" velocity="0.3" /><Note index="10" pitch="15" velocity="0.32" /><Note index="14" pitch="12" velocity="0.34" /></Program><Program title="Habanera" length="16"><Note index="2" pitch="12" velocity="0.36" /><Note index="6" pitch="15" velocity="0.38" /><Note index="10" pitch="13" velocity="0.36" /><Note index="14" pitch="12" velocity="0.38" /></Program><Program title="3-3-2 Nuevo" length="16"><Note index="2" pitch="17" velocity="0.38" /><Note index="5" pitch="15" velocity="0.36" /><Note index="10" pitch="13" velocity="0.38" /><Note index="13" pitch="12" velocity="0.4" /></Program><Program title="Arrastre Dramatico" length="16"><Note index="6" pitch="15" velocity="0.42" /><Note index="13" pitch="12" velocity="0.4" /></Program><Program title="Bordoneo" length="16"><Note index="3" pitch="12" velocity="0.36" /><Note index="7" pitch="15" velocity="0.34" /><Note index="11" pitch="10" velocity="0.36" /><Note index="15" pitch="8" velocity="0.34" /></Program><Program title="Practica Basica" length="16"><Note index="6" pitch="12" velocity="0.28" /><Note index="14" pitch="8" velocity="0.28" /></Program><Program title="Marcato Pesado" length="16"><Note index="2" pitch="12" velocity="0.3" /><Note index="10" pitch="10" velocity="0.3" /></Program><Program title="Sincopa Ligera" length="16"><Note index="5" pitch="12" velocity="0.34" /><Note index="13" pitch="8" velocity="0.34" /></Program></ns1:programs>
+        </ns1:Violin>
+
+        <ns1:Instructor title="Instructor">
+            <ns1:enabled>false</ns1:enabled>
+            <ns1:activeProgram>0</ns1:activeProgram>
+            <ns1:soundSource>sample</ns1:soundSource>
+            <ns1:programs>
+                <Program title="1" length="16">
+                    <Note index="0" pitch="0" />
+                </Program>
+                <Program title="1,2,3,4" length="16">
+                    <Note index="0" pitch="0" />
+                    <Note index="4" pitch="1" />
+                    <Note index="8" pitch="2" />
+                    <Note index="12" pitch="3" />
+                </Program>
+            </ns1:programs>
+        </ns1:Instructor>
+
+    </instrumentList>
+
+    <flavor>Tango</flavor>
+    <bpm>120</bpm>
+    <keyNote>0</keyNote>
+    <machineId>TANGO-DEFAULT</machineId>
+    <title>Tango Beat Machine</title>
+</Machine>

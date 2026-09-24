@@ -100,6 +100,8 @@ describe('BeatEngine', () => {
 
     engine.play();
     expect(engine.playing).toBe(true);
+    await Promise.resolve();
+    await Promise.resolve();
     expect(playSpy).toHaveBeenCalled();
 
     engine.stop();

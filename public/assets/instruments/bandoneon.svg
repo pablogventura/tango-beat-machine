@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 240 180"
+  width="240"
+  height="180"
+  role="img"
+  aria-label="Bandoneon">
+  <defs>
+    <linearGradient id="woodL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d4a06e"/>
+      <stop offset="40%" stop-color="#c07a41"/>
+      <stop offset="100%" stop-color="#7f361d"/>
+    </linearGradient>
+    <linearGradient id="woodR" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d4a06e"/>
+      <stop offset="45%" stop-color="#a55038"/>
+      <stop offset="100%" stop-color="#5c361b"/>
+    </linearGradient>
+    <linearGradient id="face" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7efe2"/>
+      <stop offset="100%" stop-color="#d9ceb8"/>
+    </linearGradient>
+    <linearGradient id="foldLite" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#faf6ee"/>
+      <stop offset="100%" stop-color="#e8dcc8"/>
+    </linearGradient>
+    <linearGradient id="foldDark" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#c4b49a"/>
+      <stop offset="100%" stop-color="#a89478"/>
+    </linearGradient>
+  </defs>
+
+  <ellipse cx="120" cy="169" rx="82" ry="7" fill="#160b07" opacity="0.2"/>
+
+  <!-- Bellows (wider, stronger folds) -->
+  <g stroke="#3d2a1f" stroke-width="1.2" stroke-linejoin="round">
+    <path fill="#e8dcc8" d="M78 30 L162 30 L172 150 L68 150 Z"/>
+    <path fill="url(#foldLite)" d="M82 32 L90 32 L80 148 L72 148 Z"/>
+    <path fill="url(#foldDark)" d="M92 32 L100 32 L90 148 L82 148 Z"/>
+    <path fill="url(#foldLite)" d="M102 32 L110 32 L100 148 L92 148 Z"/>
+    <path fill="url(#foldDark)" d="M112 32 L120 32 L110 148 L102 148 Z"/>
+    <path fill="url(#foldLite)" d="M122 32 L130 32 L120 148 L112 148 Z"/>
+    <path fill="url(#foldDark)" d="M132 32 L140 32 L130 148 L122 148 Z"/>
+    <path fill="url(#foldLite)" d="M142 32 L150 32 L140 148 L132 148 Z"/>
+    <path fill="url(#foldDark)" d="M152 32 L160 32 L150 148 L142 148 Z"/>
+    <rect x="76" y="28" width="88" height="8" rx="2" fill="#8a8a8a" stroke="#160b07" stroke-width="1.3"/>
+    <rect x="70" y="146" width="100" height="8" rx="2" fill="#8a8a8a" stroke="#160b07" stroke-width="1.3"/>
+  </g>
+
+  <!-- Left case -->
+  <g stroke="#160b07" stroke-width="2.2" stroke-linejoin="round">
+    <path fill="url(#woodL)" d="M14 26 L82 18 L88 156 L20 164 Z"/>
+    <path fill="url(#face)" d="M26 40 L74 34 L78 140 L30 146 Z"/>
+    <g fill="#fff8ee" stroke="#574843" stroke-width="1.15">
+      <circle cx="38" cy="52" r="4.6"/>
+      <circle cx="50" cy="50.5" r="4.6"/>
+      <circle cx="62" cy="49" r="4.6"/>
+      <circle cx="39" cy="68" r="4.6"/>
+      <circle cx="51" cy="66.5" r="4.6"/>
+      <circle cx="63" cy="65" r="4.6"/>
+      <circle cx="40" cy="84" r="4.6"/>
+      <circle cx="52" cy="82.5" r="4.6"/>
+      <circle cx="64" cy="81" r="4.6"/>
+      <circle cx="41" cy="100" r="4.6"/>
+      <circle cx="53" cy="98.5" r="4.6"/>
+      <circle cx="65" cy="97" r="4.6"/>
+      <circle cx="42" cy="116" r="4.6"/>
+      <circle cx="54" cy="114.5" r="4.6"/>
+      <circle cx="66" cy="113" r="4.6"/>
+      <circle cx="43" cy="130" r="4.4"/>
+      <circle cx="55" cy="128.5" r="4.4"/>
+      <circle cx="67" cy="127" r="4.4"/>
+    </g>
+    <path fill="none" stroke="#160b07" stroke-width="4" stroke-linecap="round" d="M12 50 C2 72 2 116 12 138"/>
+  </g>
+
+  <!-- Right case -->
+  <g stroke="#160b07" stroke-width="2.2" stroke-linejoin="round">
+    <path fill="url(#woodR)" d="M158 18 L226 26 L220 164 L152 156 Z"/>
+    <path fill="url(#face)" d="M166 34 L214 40 L210 146 L162 140 Z"/>
+    <g fill="#fff8ee" stroke="#574843" stroke-width="1.15">
+      <circle cx="178" cy="49" r="4.6"/>
+      <circle cx="190" cy="50.5" r="4.6"/>
+      <circle cx="202" cy="52" r="4.6"/>
+      <circle cx="177" cy="65" r="4.6"/>
+      <circle cx="189" cy="66.5" r="4.6"/>
+      <circle cx="201" cy="68" r="4.6"/>
+      <circle cx="176" cy="81" r="4.6"/>
+      <circle cx="188" cy="82.5" r="4.6"/>
+      <circle cx="200" cy="84" r="4.6"/>
+      <circle cx="175" cy="97" r="4.6"/>
+      <circle cx="187" cy="98.5" r="4.6"/>
+      <circle cx="199" cy="100" r="4.6"/>
+      <circle cx="174" cy="113" r="4.6"/>
+      <circle cx="186" cy="114.5" r="4.6"/>
+      <circle cx="198" cy="116" r="4.6"/>
+      <circle cx="173" cy="127" r="4.4"/>
+      <circle cx="185" cy="128.5" r="4.4"/>
+      <circle cx="197" cy="130" r="4.4"/>
+    </g>
+    <path fill="none" stroke="#160b07" stroke-width="4" stroke-linecap="round" d="M228 50 C238 72 238 116 228 138"/>
+  </g>
+
+  <!-- Metal corner plates -->
+  <g fill="#9a9a9a" stroke="#160b07" stroke-width="1.1">
+    <rect x="20" y="28" width="12" height="9" rx="1.5" transform="rotate(-5 26 32)"/>
+    <rect x="208" y="28" width="12" height="9" rx="1.5" transform="rotate(5 214 32)"/>
+    <rect x="22" y="152" width="12" height="9" rx="1.5" transform="rotate(5 28 156)"/>
+    <rect x="206" y="152" width="12" height="9" rx="1.5" transform="rotate(-5 212 156)"/>
+  </g>
+</svg>

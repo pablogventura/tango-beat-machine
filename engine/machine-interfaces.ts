@@ -1,3 +1,5 @@
+export type SoundSource = 'sample' | 'soundfont';
+
 export interface INote {
   index: number;
   pitch: number;
@@ -24,11 +26,18 @@ export interface IInstrument {
   playBothHands: boolean;
   leftHandPitchOffset: number;
   volume: number;
+  soundSource: SoundSource;
+  /** GM program (0-127) or preset within the SoundFont. */
+  midiProgram: number;
+  /** SoundFont asset key, e.g. "bandoneon" or "gm". */
+  soundfontId: string;
 }
+
+export type MachineFlavor = 'Salsa' | 'Merengue' | 'Tango';
 
 export interface IMachine {
   bpm: number;
   keyNote: number;
   instruments: IInstrument[];
-  flavor: 'Salsa' | 'Merengue';
+  flavor: MachineFlavor;
 }

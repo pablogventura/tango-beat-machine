@@ -3,7 +3,9 @@ import { AudioBackend } from './audio-backend';
 import { InstrumentPlayer } from './instrument-player';
 import { createMachine } from './machine';
 import { IInstrument, IMachine } from './machine-interfaces';
+import { midiNoteFromSampleName } from './midi-note';
 import { IInstrumentSample, resolveInstrumentNotes } from './resolve-instrument-notes';
+import { SoundFontBackend } from './soundfont-backend';
 
 export type { IInstrumentSample } from './resolve-instrument-notes';
 
@@ -18,13 +20,19 @@ export class BeatEngine {
   private interval: number | null = null;
 
   @observable
+  private _playing = false;
+
+  @observable
   private _machine: IMachine = createMachine();
 
   @observable
   beat = 0;
 
-  constructor(private mixer: AudioBackend) {
+  constructor(private mixer: AudioBackend, private soundfonts: SoundFontBackend = new SoundFontBackend()) {
     this.mixer.init();
+    if (this.mixer.context) {
+      this.soundfonts.attachContext(this.mixer.context, () => this.mixer.getCurrentTime());
+    }
   }
 
   get machine() {
@@ -44,6 +52,11 @@ export class BeatEngine {
       if (!this.machine) {
         return;
       }
+
+      if (this.usesSoundFonts(this.machine)) {
+        void this.soundfonts.ensureLoaded();
+      }
+
       if (this.playing) {
         this.stop();
         this.play();
@@ -83,9 +96,53 @@ export class BeatEngine {
   }
 
   public play() {
-    this.mixer.context?.resume();
+    this._playing = true;
+    void this.startPlayback();
+  }
+
+  private async startPlayback() {
+    if (!this._playing) {
+      return;
+    }
+
+    await this.mixer.context?.resume();
+    if (!this._playing) {
+      return;
+    }
+
+    if (this.mixer.context) {
+      this.soundfonts.attachContext(this.mixer.context, () => this.mixer.getCurrentTime());
+    }
+    this.mixer.ensureTimeline();
+
+    if (this.usesSoundFonts(this.machine)) {
+      try {
+        await this.soundfonts.ensureLoaded();
+      } catch (error) {
+        console.error('Failed to load soundfonts', error);
+      }
+    }
+
+    if (!this._playing) {
+      return;
+    }
+
+    // Avoid stacking multiple schedulers if play() is called again.
+    if (this.interval) {
+      clearTimeout(this.interval);
+      this.interval = null;
+    }
+    if (this.animationFrameRequest) {
+      cancelAnimationFrame(this.animationFrameRequest);
+      this.animationFrameRequest = null;
+    }
+
     this.scheduleBuffers();
     this.beatTick();
+  }
+
+  private usesSoundFonts(machine: IMachine) {
+    return machine.flavor === 'Tango' || machine.instruments.some((instrument) => instrument.soundSource === 'soundfont');
   }
 
   private getInstrumentPlayer(context: AudioContext, instrument: IInstrument) {
@@ -102,8 +159,28 @@ export class BeatEngine {
     }
   }
 
+  private playNote(instrument: IInstrument, note: IInstrumentSample, when: number, player: InstrumentPlayer) {
+    if (instrument.soundSource === 'soundfont') {
+      const midiNote = midiNoteFromSampleName(note.sampleName);
+      if (midiNote == null) {
+        console.warn(`Cannot parse MIDI note from ${note.sampleName}`);
+        return;
+      }
+      this.soundfonts.play({
+        instrument,
+        midiNote,
+        when,
+        velocity: note.velocity,
+        durationSec: Math.max(0.2, this.beatTime * 0.9),
+      });
+      return;
+    }
+    this.mixer.play(note.sampleName, player, when, note.velocity);
+  }
+
   private scheduleBuffers() {
     const context = this.mixer.context;
+    this.mixer.ensureTimeline();
     if (context && this.mixer.ready) {
       const sampleTime = this.beatTime / 2;
       const currentBeat = this.getBeatIndex();
@@ -112,12 +189,7 @@ export class BeatEngine {
         this.machine.instruments.forEach((instrument) => {
           const instrumentPlayer = this.getInstrumentPlayer(context, instrument);
           this.instrumentNotes(instrument, sampleIndex).forEach((note) => {
-            this.mixer.play(
-              note.sampleName,
-              instrumentPlayer,
-              sampleIndex * sampleTime - this.audioTimeDelta,
-              note.velocity,
-            );
+            this.playNote(instrument, note, sampleIndex * sampleTime - this.audioTimeDelta, instrumentPlayer);
           });
         });
         this.nextSampleIndex++;
@@ -130,10 +202,21 @@ export class BeatEngine {
 
   rescheduleInstrument(instrument: IInstrument, player: InstrumentPlayer) {
     player.reset();
+    if (instrument.soundSource === 'soundfont') {
+      this.soundfonts.cancelInstrument(instrument.id);
+    }
+
     const sampleTime = this.beatTime / 2;
-    for (let sampleIndex = Math.ceil(this.getBeatIndex() * 2); sampleIndex < this.nextSampleIndex; sampleIndex++) {
+    const transportNow = this.mixer.getCurrentTime();
+    const startIndex = Math.ceil(this.getBeatIndex() * 2);
+
+    for (let sampleIndex = startIndex; sampleIndex < this.nextSampleIndex; sampleIndex++) {
+      const when = sampleIndex * sampleTime - this.audioTimeDelta;
+      if (when <= transportNow) {
+        continue;
+      }
       this.instrumentNotes(instrument, sampleIndex).forEach((note) => {
-        this.mixer.play(note.sampleName, player, sampleIndex * sampleTime - this.audioTimeDelta, note.velocity);
+        this.playNote(instrument, note, when, player);
       });
     }
   }
@@ -147,9 +230,11 @@ export class BeatEngine {
     for (const instrument of Array.from(this.instrumentPlayers.values())) {
       instrument.reset(hard);
     }
+    this.soundfonts.reset();
   }
 
   public stop() {
+    this._playing = false;
     if (this.interval) {
       clearTimeout(this.interval);
       this.interval = null;
@@ -166,7 +251,7 @@ export class BeatEngine {
 
   @computed
   get playing() {
-    return this.interval != null;
+    return this._playing;
   }
 
   get beatTime() {

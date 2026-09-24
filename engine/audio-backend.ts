@@ -82,15 +82,20 @@ export class AudioBackend {
       return;
     }
 
+    this.ensureTimeline();
     const bufferSource = context.createBufferSource();
     bufferSource.connect(player.createNoteDestination(velocity));
     bufferSource.buffer = buffer;
-    if (this.zeroTime === null) {
-      this.zeroTime = context.currentTime;
-    }
-    const startTime = this.zeroTime + when;
+    const startTime = this.zeroTime! + when;
     bufferSource.start(Math.max(0, startTime));
     player.registerSample(bufferSource, startTime);
+  }
+
+  /** Start the shared transport clock if it is not running yet. */
+  ensureTimeline() {
+    if (this.zeroTime === null && this.context) {
+      this.zeroTime = this.context.currentTime;
+    }
   }
 
   reset() {

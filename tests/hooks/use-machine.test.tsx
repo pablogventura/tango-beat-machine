@@ -1,19 +1,22 @@
-import { render, waitFor } from '@testing-library/react';
-import { useEffect } from 'react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { useMachine } from '../../hooks/use-machine';
-import { IMachine } from '../../engine/machine-interfaces';
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 
 const xml = readFileSync(resolve(process.cwd(), 'tests/fixtures/machines/minimal.xml'), 'utf-8');
 
-function Probe({ onMachine }: { onMachine: (machine: IMachine | null) => void }) {
+function Probe() {
   const machine = useMachine('/fixtures/minimal.xml');
-  useEffect(() => {
-    onMachine(machine);
-  }, [machine, onMachine]);
-  return null;
+  if (!machine) {
+    return <div>loading</div>;
+  }
+  return (
+    <div>
+      <span>{machine.flavor}</span>
+      <span>{machine.instruments.map((instrument) => instrument.id).join(',')}</span>
+    </div>
+  );
 }
 
 describe('useMachine', () => {
@@ -23,15 +26,12 @@ describe('useMachine', () => {
   });
 
   it('loads a machine from a fetched XML document', async () => {
-    vi.stubGlobal(
-      'fetch',
-      vi.fn(async () => new Response(xml, { status: 200, headers: { 'Content-Type': 'text/xml' } })),
-    );
+    const fetchMock = vi.fn(async () => new Response(xml, { status: 200, headers: { 'Content-Type': 'text/xml' } }));
+    vi.stubGlobal('fetch', fetchMock);
 
-    let machine: IMachine | null = null;
-    render(<Probe onMachine={(value) => (machine = value)} />);
-    await waitFor(() => expect(machine).not.toBeNull());
-    expect(machine!.flavor).toBe('Salsa');
-    expect(machine!.instruments.map((i) => i.id)).toEqual(['clave', 'piano']);
+    render(<Probe />);
+    await waitFor(() => expect(screen.getByText('Salsa')).toBeInTheDocument());
+    expect(screen.getByText('clave,piano')).toBeInTheDocument();
+    expect(fetchMock).toHaveBeenCalled();
   });
 });

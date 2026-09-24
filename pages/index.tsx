@@ -52,9 +52,10 @@ export default function Home({ machines }: IHomeProps) {
 export const getStaticProps: GetStaticProps<IHomeProps> = async () => {
   const salsa = await loadMachine('salsa.xml');
   const merengue = await loadMachine('merengue.xml');
+  const tango = await loadMachine('tango.xml');
   return {
     props: {
-      machines: { salsa, merengue },
+      machines: { salsa, merengue, tango },
     },
   };
 };

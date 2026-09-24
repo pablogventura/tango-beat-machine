@@ -25,6 +25,7 @@ import { InstrumentTile } from './instrument-tile';
 export interface IDefaultMachines {
   salsa: IMachine;
   merengue: IMachine;
+  tango: IMachine;
 }
 
 export interface IBeatMachineUIProps {
@@ -32,7 +33,7 @@ export interface IBeatMachineUIProps {
 }
 
 export const BeatMachineUI = observer(({ machines }: IBeatMachineUIProps) => {
-  const { salsa, merengue } = machines;
+  const { salsa, merengue, tango } = machines;
   const engine = useBeatEngine();
   const [machine, setMachine] = useState(observable(salsa));
 
@@ -115,7 +116,7 @@ export const BeatMachineUI = observer(({ machines }: IBeatMachineUIProps) => {
           </Grid>
           <Grid item xs={1} />
           <Grid item>
-            {engine && salsa && merengue && (
+            {engine && salsa && merengue && tango && (
               <ButtonGroup variant="text" color="primary" aria-label="Music style">
                 <Button
                   onClick={() => setMachine(observable(salsa))}
@@ -128,6 +129,12 @@ export const BeatMachineUI = observer(({ machines }: IBeatMachineUIProps) => {
                   variant={machine.flavor === 'Merengue' ? 'contained' : undefined}
                 >
                   Merengue
+                </Button>
+                <Button
+                  onClick={() => setMachine(observable(tango))}
+                  variant={machine.flavor === 'Tango' ? 'contained' : undefined}
+                >
+                  Tango
                 </Button>
               </ButtonGroup>
             )}

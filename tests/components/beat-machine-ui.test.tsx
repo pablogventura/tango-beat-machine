@@ -35,9 +35,15 @@ function buildMachines() {
   merengue.bpm = 160;
   merengue.instruments = [createInstrument({ id: 'cowbell', title: 'Cowbell' })];
 
+  const tango = createMachine();
+  tango.flavor = 'Tango';
+  tango.bpm = 120;
+  tango.instruments = [createInstrument({ id: 'bandoneon', title: 'Bandoneon', soundSource: 'soundfont' })];
+
   return {
     salsa: observable(salsa),
     merengue: observable(merengue),
+    tango: observable(tango),
   };
 }
 
@@ -53,12 +59,15 @@ describe('BeatMachineUI', () => {
     expect(play).toHaveBeenCalled();
   });
 
-  it('switches between salsa and merengue', async () => {
+  it('switches between salsa, merengue and tango', async () => {
     render(<BeatMachineUI machines={buildMachines()} />);
     expect(screen.getByText('Clave')).toBeInTheDocument();
 
     fireEvent.click(screen.getByText('Merengue'));
     await waitFor(() => expect(screen.getByText('Cowbell')).toBeInTheDocument());
+
+    fireEvent.click(screen.getByText('Tango'));
+    await waitFor(() => expect(screen.getByText('Bandoneon')).toBeInTheDocument());
 
     fireEvent.click(screen.getByText('Salsa'));
     await waitFor(() => expect(screen.getByText('Clave')).toBeInTheDocument());

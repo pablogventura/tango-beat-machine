@@ -4,10 +4,10 @@ Guide for coding agents. Do not duplicate the README.
 
 ## Stack
 
-- Next.js (Pages Router) + React 16 + TypeScript
+- Next.js (Pages Router) + React 18 + TypeScript
 - MobX 5 (`mobx-react-lite`, decorators / `experimentalDecorators`)
 - Material UI v4
-- Web Audio playback in `engine/` from per-file samples
+- Web Audio: WAV samples for Salsa/Merengue; SoundFonts (FluidSynth / `js-synthesizer`) for Tango
 - Deploy: Firebase Hosting static export (`out/`)
 - Tests: Vitest + Testing Library (jsdom)
 
@@ -27,26 +27,26 @@ Guide for coding agents. Do not duplicate the README.
 
 ### Audio assets
 
-- Versioned under `public/assets/audio/samples/`
-- `manifest.json` maps `sampleName` -> relative WAV path
-- Runtime loads via [`engine/audio-backend.ts`](engine/audio-backend.ts) (preload all, then play full buffers)
-- Path helper: [`engine/sample-path.ts`](engine/sample-path.ts)
+- WAV: `public/assets/audio/samples/` + `manifest.json` via [`engine/audio-backend.ts`](engine/audio-backend.ts)
+- SF2: `public/assets/audio/soundfonts/` via [`engine/soundfont-backend.ts`](engine/soundfont-backend.ts) (lazy on Tango)
+- Vendor: `public/vendor/libfluidsynth-2.4.6.js`
+- Credits: [`CREDITS.md`](CREDITS.md)
 
 ## Layout
 
 ```
 components/   UI (TSX + CSS modules)
-engine/       BeatEngine, AudioBackend, sample path, instrument players, XML loader
+engine/       BeatEngine, AudioBackend, SoundFontBackend, XML loader
 hooks/        useBeatEngine, useMachine, useWindowListener
 pages/        Next.js routes (_app, index, 404, android-videos)
-public/       static assets (samples, machines XML, icons, instruments, images)
+public/       samples, soundfonts, machines XML, icons, instruments
 services/     load-machine helper
 styles/       globals.css
 tests/        Vitest unit/component tests + fixtures
 utils/        environment helpers
 ```
 
-Machine definitions: `public/assets/machines/*.xml` (e.g. `salsa.xml`, `merengue.xml`).
+Machines: `public/assets/machines/{salsa,merengue,tango}.xml`.
 
 ## Conventions
 
@@ -56,6 +56,7 @@ Machine definitions: `public/assets/machines/*.xml` (e.g. `salsa.xml`, `merengue
 - State: MobX observables; UI components wrapped with `observer` where reactive
 - Babel: legacy decorators + class properties (see `.babelrc`)
 - XML machine files: EditorConfig uses tabs / indent 4
+- Instruments may set `soundSource` to `sample` or `soundfont`
 
 ## Tests
 
