@@ -1,6 +1,6 @@
 # SoundFont credits
 
-This project redistributes SoundFont banks for Tango playback via FluidSynth (`js-synthesizer` / libfluidsynth, LGPL-2.1).
+This project redistributes SoundFont banks for Tango playback via FluidSynth (`js-synthesizer` / libfluidsynth, LGPL-2.1). SF3 decoding uses the `libfluidsynth-*-with-libsndfile` build.
 
 ## bandoneon_v2.sf2
 
@@ -9,10 +9,10 @@ This project redistributes SoundFont banks for Tango playback via FluidSynth (`j
 - License: free for private and commercial music and software use (see author statement on MuseScore forums / project page). Attribution appreciated.
 - Related CC BY packaging: European Bandoneon V2.5 on Musical Artifacts.
 
-## TimGM6mb.sf2
+## MuseScore_General.sf3
 
-- Copyright: Tim Brechbill (2004), packaging David Bolton / Debian maintainers
-- License: GPL-2
+- Source: https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/
+- License: MIT (FluidR3 / FluidR3Mono lineage; see upstream MuseScore_General_License.md)
 - Used for General MIDI piano (program 0), acoustic bass (32), and violin (40).
 
 Include this file when redistributing the SoundFont assets.

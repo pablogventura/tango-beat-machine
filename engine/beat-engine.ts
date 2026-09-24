@@ -5,7 +5,7 @@ import { createMachine } from './machine';
 import { IInstrument, IMachine } from './machine-interfaces';
 import { midiNoteFromSampleName } from './midi-note';
 import { IInstrumentSample, resolveInstrumentNotes } from './resolve-instrument-notes';
-import { SoundFontBackend } from './soundfont-backend';
+import { SoundFontBackend, soundfontNoteDurationSec } from './soundfont-backend';
 
 export type { IInstrumentSample } from './resolve-instrument-notes';
 
@@ -171,7 +171,7 @@ export class BeatEngine {
         midiNote,
         when,
         velocity: note.velocity,
-        durationSec: Math.max(0.2, this.beatTime * 0.9),
+        durationSec: soundfontNoteDurationSec(instrument.id, this.beatTime),
       });
       return;
     }

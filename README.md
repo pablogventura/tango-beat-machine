@@ -12,7 +12,7 @@ Built with [Next.js](https://nextjs.org/).
 
 - WAV samples (Salsa / Merengue): `public/assets/audio/samples/`
 - SoundFonts (Tango): `public/assets/audio/soundfonts/` (see [CREDITS.md](CREDITS.md))
-- FluidSynth runtime helper: `public/vendor/libfluidsynth-2.4.6.js`
+- FluidSynth runtime helper: `public/vendor/libfluidsynth-2.4.6-with-libsndfile.js`
 
 ```shell
 npm install

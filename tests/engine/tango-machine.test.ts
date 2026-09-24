@@ -16,33 +16,19 @@ describe('tango machine', () => {
     expect(bandoneon.soundSource).toBe('soundfont');
     expect(bandoneon.soundfontId).toBe('bandoneon');
     expect(bandoneon.programs.map((program: { title: string }) => program.title)).toEqual([
-      'Marcato Di Sarli',
-      'Sincopa Troilo',
-      'Milonga',
-      'Vals Criollo',
-      'Yumba Pugliese',
-      "D'Arienzo",
-      'Canaro',
-      'Biagi',
-      'Tanturi',
-      'De Caro',
-      'Fresedo',
-      'Calo',
-      'Laurenz',
-      'Salgan',
-      'Guardia Vieja',
-      'Habanera',
-      '3-3-2 Nuevo',
-      'Arrastre Dramatico',
-      'Bordoneo',
-      'Practica Basica',
-      'Marcato Pesado',
-      'Sincopa Ligera',
+      'Cumparsita Dramática',
+      'El Choclo Criollo',
+      'Derecho Viejo Pista',
+      'La Puñalada Veloz',
+      'Quejas Cantabile',
+      'El Flete Picado',
+      '9 de Julio Marcato',
+      'Gran Muñeca Elegante',
     ]);
     for (const instrument of machine.instruments.filter((item: { id: string }) =>
       ['bandoneon', 'piano', 'bass', 'violin'].includes(item.id),
     )) {
-      expect(instrument.programs).toHaveLength(22);
+      expect(instrument.programs).toHaveLength(8);
       expect(instrument.soundSource).toBe('soundfont');
     }
   });

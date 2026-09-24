@@ -28,8 +28,8 @@ Guide for coding agents. Do not duplicate the README.
 ### Audio assets
 
 - WAV: `public/assets/audio/samples/` + `manifest.json` via [`engine/audio-backend.ts`](engine/audio-backend.ts)
-- SF2: `public/assets/audio/soundfonts/` via [`engine/soundfont-backend.ts`](engine/soundfont-backend.ts) (lazy on Tango)
-- Vendor: `public/vendor/libfluidsynth-2.4.6.js`
+- SF2/SF3: `public/assets/audio/soundfonts/` via [`engine/soundfont-backend.ts`](engine/soundfont-backend.ts) (lazy on Tango)
+- Vendor: `public/vendor/libfluidsynth-2.4.6-with-libsndfile.js` (SF3 support)
 - Credits: [`CREDITS.md`](CREDITS.md)
 
 ## Layout

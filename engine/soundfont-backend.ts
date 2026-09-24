@@ -1,11 +1,17 @@
 import { IInstrument } from './machine-interfaces';
 
-const LIBFLUIDSYNTH_URL = '/vendor/libfluidsynth-2.4.6.js';
+/** SF3 needs the libsndfile FluidSynth build. */
+const LIBFLUIDSYNTH_URL = '/vendor/libfluidsynth-2.4.6-with-libsndfile.js';
 
 const SOUNDFONT_URLS: Record<string, string> = {
   bandoneon: '/assets/audio/soundfonts/bandoneon_v2.sf2',
-  gm: '/assets/audio/soundfonts/TimGM6mb.sf2',
+  gm: '/assets/audio/soundfonts/MuseScore_General.sf3',
 };
+
+/** MIDI CC numbers used for per-channel mix. */
+const CC_CHANNEL_VOLUME = 7;
+const CC_REVERB_SEND = 91;
+const CC_CHORUS_SEND = 93;
 
 type JsSynthModule = typeof import('js-synthesizer');
 
@@ -29,6 +35,7 @@ export class SoundFontBackend {
   private loadPromise: Promise<void> | null = null;
   private sfontIds = new Map<string, number>();
   private channelByInstrument = new Map<string, number>();
+  private configuredChannels = new Set<number>();
   private nextChannel = 0;
   private timersByInstrument = new Map<string, number[]>();
   private getTransportTime: () => number = () => 0;
@@ -65,9 +72,32 @@ export class SoundFontBackend {
     await JSSynth.waitForReady();
 
     const synth = new JSSynth.Synthesizer();
-    synth.init(context.sampleRate);
-    const node = synth.createAudioNode(context, 2048);
+    synth.init(context.sampleRate, {
+      initialGain: 0.45,
+      reverbActive: true,
+      reverbRoomSize: 0.55,
+      reverbDamp: 0.35,
+      reverbWidth: 0.75,
+      reverbLevel: 0.75,
+      chorusActive: true,
+      chorusLevel: 1.4,
+      chorusDepth: 6,
+      chorusSpeed: 0.35,
+      chorusNr: 3,
+      polyphony: 128,
+    });
+    const node = synth.createAudioNode(context, 1024);
     node.connect(context.destination);
+
+    // Prefer higher-quality interpolation when available.
+    if (typeof (synth as any).setInterpolation === 'function') {
+      try {
+        // InterpolationValues.FourthOrder = 4
+        (synth as any).setInterpolation(4);
+      } catch {
+        // Older builds may not expose InterpolationValues the same way.
+      }
+    }
 
     this.synth = synth;
     this.audioNode = node;
@@ -133,9 +163,10 @@ export class SoundFontBackend {
     }
 
     synth.midiProgramSelect(channel, sfontId, 0, instrument.midiProgram || 0);
+    this.ensureChannelMix(channel, instrument);
 
     const delayMs = (when - transportNow) * 1000;
-    const vel = Math.max(1, Math.min(127, Math.round((velocity ?? 1) * 100 * instrument.volume)));
+    const vel = velocityToMidi(velocity, instrument.volume);
     const instrumentTimers = this.timersByInstrument.get(instrument.id) ?? [];
     this.timersByInstrument.set(instrument.id, instrumentTimers);
 
@@ -144,11 +175,24 @@ export class SoundFontBackend {
       const offTimer = window.setTimeout(() => {
         synth.midiNoteOff(channel, midiNote);
         this.removeTimer(instrument.id, offTimer);
-      }, durationSec * 1000);
+      }, Math.max(40, durationSec * 1000));
       instrumentTimers.push(offTimer);
       this.removeTimer(instrument.id, onTimer);
     }, delayMs);
     instrumentTimers.push(onTimer);
+  }
+
+  private ensureChannelMix(channel: number, instrument: IInstrument) {
+    if (!this.synth || this.configuredChannels.has(channel)) {
+      return;
+    }
+    const volumeCc = Math.max(40, Math.min(127, Math.round(instrument.volume * 110)));
+    const reverbCc = instrument.id === 'violin' ? 90 : instrument.id === 'bandoneon' ? 72 : 55;
+    const chorusCc = instrument.id === 'violin' ? 40 : instrument.id === 'piano' ? 18 : 10;
+    this.synth.midiControl(channel, CC_CHANNEL_VOLUME, volumeCc);
+    this.synth.midiControl(channel, CC_REVERB_SEND, reverbCc);
+    this.synth.midiControl(channel, CC_CHORUS_SEND, chorusCc);
+    this.configuredChannels.add(channel);
   }
 
   private removeTimer(instrumentId: string, timer: number) {
@@ -171,6 +215,32 @@ export class SoundFontBackend {
     this.nextChannel += 1;
     this.channelByInstrument.set(instrument.id, channel);
     return channel;
+  }
+}
+
+/** Map normalized velocity (0-1) + instrument volume into MIDI 1-127 with a soft curve. */
+export function velocityToMidi(velocity: number | undefined, volume: number): number {
+  const normalized = Math.max(0, Math.min(1, velocity ?? 1));
+  const shaped = Math.pow(normalized, 0.8);
+  return Math.max(1, Math.min(127, Math.round(shaped * 127 * Math.max(0.35, Math.min(1, volume)))));
+}
+
+/**
+ * Note length tuned per instrument so SF envelopes can breathe (avoid plucky GM cutoffs).
+ * `beatTime` is one quarter-note at the current BPM.
+ */
+export function soundfontNoteDurationSec(instrumentId: string, beatTime: number): number {
+  switch (instrumentId) {
+    case 'violin':
+      return Math.max(0.5, beatTime * 1.7);
+    case 'bandoneon':
+      return Math.max(0.4, beatTime * 1.25);
+    case 'piano':
+      return Math.max(0.45, beatTime * 1.35);
+    case 'bass':
+      return Math.max(0.28, beatTime * 0.95);
+    default:
+      return Math.max(0.35, beatTime * 1.1);
   }
 }
 
